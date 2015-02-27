@@ -1,0 +1,6 @@
+<h1>Most Recent Jokes</h1>
+<%= @jokes.each do |joke| %>
+  <p><%= joke.title %></p>
+  <p><%= joke.content %></p>
+  <p><%= joke.source %></p>
+<% end %>
