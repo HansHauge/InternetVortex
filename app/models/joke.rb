@@ -14,10 +14,16 @@ class Joke < ActiveRecord::Base
         create!(
           :title   => entry.title,
           :content => entry.summary,
-          :source  => entry.url,
+          :source  => get_host_without_www(entry.url),
           :guid    => entry.id
         )
       end
     end
+  end
+
+  def self.get_host_without_www(url)
+    url = "http://#{url}" if URI.parse(url).scheme.nil?
+    host = URI.parse(url).host.downcase
+    host.start_with?('www.') ? host[4..-1] : host
   end
 end
