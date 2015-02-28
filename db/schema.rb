@@ -11,17 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150227224724) do
+ActiveRecord::Schema.define(version: 20150227232326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "jokes", force: true do |t|
+  create_table "jokes", force: :cascade do |t|
     t.text     "title"
     t.text     "content"
-    t.string   "source"
+    t.string   "source",     limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "guid",       limit: 255
   end
 
 end

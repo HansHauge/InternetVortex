@@ -1,6 +1,13 @@
 <h1>Most Recent Jokes</h1>
-<%= @jokes.each do |joke| %>
-  <p><%= joke.title %></p>
-  <p><%= joke.content %></p>
-  <p><%= joke.source %></p>
-<% end %>
+
+<div id="recent_jokes">
+  <h3>Recent Jokes</h3>
+  <ul>
+    <% @jokes.each do |joke| %>
+      <li>
+        <p><%= link_to joke.title, joke_path(joke) %></p>
+        <p><%= link_to joke.source %></p>
+      </li>
+    <% end %>
+  </ul>
+</div>

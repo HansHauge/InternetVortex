@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'jokes' => 'jokes#index'
+  get 'jokes/:id' => 'jokes#show', as: 'joke'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
