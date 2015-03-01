@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>InternetVortex</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>InternetVortex</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= render 'layouts/navbar' %>
 
-<%= yield %>
-
-</body>
+    <div class="row">
+      <div class="col-md-2">
+        <div class='profit-column'>Left side</div>
+      </div>
+      <div class="col-md-8">
+        <%= yield %>
+      </div>
+      <div class="col-md-2">
+        <div class='profit-column'>Right side</div>
+      </div>
+    </div>
+  </body>
 </html>

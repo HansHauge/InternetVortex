@@ -1,0 +1,16 @@
+<div id='outer-content-wrapper'>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title">Recent Jokes</h3>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        <% @jokes.each do |joke| %>
+          <li class="list-group-item">
+            <%= link_to joke.title, joke_path(joke) %>  <span class='inline-source'>(<%= link_to joke.source, joke.guid %>)</span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
