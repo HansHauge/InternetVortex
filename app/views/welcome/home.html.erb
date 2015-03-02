@@ -1,0 +1,23 @@
+<div id='outer-content-wrapper'>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Newest Content from All Sources</h3>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        <% @listings.each do |listing| %>
+          <% if listing.class == Joke %>
+            <li class="list-group-item" style="background-color: rgb(217, 237, 247);">
+              <%= link_to listing.title, joke_path(listing) %>  <span class='inline-source'>(<%= link_to listing.source, listing.guid %>)</span>
+            </li>
+          <% else %>
+            <li class="list-group-item" style="background-color: #dff0d8;">
+              <%= link_to listing.title, listing.guid, target: '_blank' %>  <span class='inline-source'>
+                (<%= link_to listing.source, listing.guid %>)</span>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
