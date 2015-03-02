@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150302191447) do
+ActiveRecord::Schema.define(version: 20150302221034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "buzzfeed_articles", force: :cascade do |t|
+    t.string   "title"
+    t.text     "summary"
+    t.string   "source"
+    t.string   "guid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "chive_articles", force: :cascade do |t|
     t.string   "title"

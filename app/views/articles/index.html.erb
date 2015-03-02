@@ -5,10 +5,10 @@
     </div>
     <div class="panel-body">
       <ul class="list-group">
-        <% @chive_articles.each do |chive_article| %>
+        <% @articles.each do |article| %>
           <li class="list-group-item">
-            <%= link_to chive_article.title, chive_article.guid, target: '_blank' %>  <span class='inline-source'>
-              (<%= link_to chive_article.source, chive_article.guid %>)</span>
+            <%= link_to article.title, article.guid, target: '_blank' %>  <span class='inline-source'>
+              (<%= link_to article.source, article.guid %>)</span>
           </li>
         <% end %>
       </ul>
