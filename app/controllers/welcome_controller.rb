@@ -8,7 +8,9 @@ class WelcomeController < ApplicationController
     #jokes
     jokes = Joke.last(20)
 
-    @listings = articles.concat(jokes).sort { |x,y| x.created_at <=> y.created_at }
+    listings = articles.concat(jokes).sort { |x,y| x.created_at <=> y.created_at }
+
+    @listings = listings.paginate(:page => params[:page], :per_page => 20)
   end
 
   def about
