@@ -10,4 +10,7 @@ class WelcomeController < ApplicationController
 
     @listings = articles.concat(jokes).sort { |x,y| x.created_at <=> y.created_at }
   end
+
+  def about
+  end
 end
