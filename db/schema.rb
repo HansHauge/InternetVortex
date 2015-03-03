@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303041021) do
+ActiveRecord::Schema.define(version: 20150303072217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,7 +45,10 @@ ActiveRecord::Schema.define(version: 20150303041021) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "guid",       limit: 255
+    t.string   "slug"
   end
+
+  add_index "jokes", ["slug"], name: "index_jokes_on_slug", using: :btree
 
   create_table "memebase_articles", force: :cascade do |t|
     t.string   "title"
@@ -65,6 +68,9 @@ ActiveRecord::Schema.define(version: 20150303041021) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text     "content"
+    t.string   "slug"
   end
+
+  add_index "reddit_funny_articles", ["slug"], name: "index_reddit_funny_articles_on_slug", using: :btree
 
 end

@@ -6,6 +6,6 @@ class JokesController < ApplicationController
   end
 
   def show
-    @joke = Joke.find(params[:id])
+    @joke = Joke.friendly.find(params[:id])
   end
 end
