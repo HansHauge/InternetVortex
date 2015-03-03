@@ -7,9 +7,28 @@
     <div class="panel-body">
       <ul class="list-group">
         <% @articles.each do |article| %>
-          <li class="list-group-item">
-            <%= link_to article.title, article.guid, target: '_blank' %>  <span class='inline-source'>
-              (<%= link_to article.source, article.guid %>)</span>
+          <li class="list-group-item slim-list-group-item">
+            <% if article.is_a?(RedditFunnyArticle) %>
+              <div class='article-thumbnail'>
+                <%= link_to article_path(article) do %>
+                  <%= image_tag article.thumbnail, class: 'img-responsive' %>
+                <% end %>
+              </div>
+              <div class='article-title'>
+                <%= link_to article.title, article_path(article) %>  <span class='inline-source'>
+                  (<%= link_to article.source, article.guid %>)</span>
+              </div>
+            <% else %>
+              <div class='article-thumbnail'>
+                <%= link_to article.guid do %>
+                  <%= image_tag article.thumbnail, class: 'img-responsive' %>
+                <% end %>
+              </div>
+              <div class='article-title'>
+                <%= link_to article.title, article.guid %>  <span class='inline-source'>
+                  (<%= link_to article.source, article.guid %>)</span>
+              </div>
+            <% end %>
           </li>
         <% end %>
       </ul>

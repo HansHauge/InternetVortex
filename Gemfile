@@ -30,6 +30,7 @@ gem 'feedjira'
 gem 'sidekiq'
 gem 'pry'
 gem 'will_paginate', '~> 3.0.6'
+gem 'nokogiri', '~> 1.6.6.2'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

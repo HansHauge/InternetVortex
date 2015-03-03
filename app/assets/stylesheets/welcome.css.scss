@@ -1,3 +1,20 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.article-thumbnail{
+  display: inline-block;
+  max-width: 80px;
+}
+
+.article-title{
+  display: inline-block;
+  vertical-align: top;
+  padding: 15px 10px;
+}
+
+.slim-list-group-item{
+  padding: 2px;
+  height: 50px;
+  overflow-y: hidden;
+}
