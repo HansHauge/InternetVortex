@@ -1,5 +1,7 @@
 class UpdateRssFeedsJob < ActiveJob::Base
-  attr_accessor :r_jokes_feed, :chive_article_feed, :buzzfeed_lol_article_feed, :buzzfeed_fail_article_feed
+  attr_accessor :r_jokes_feed, :chive_article_feed, :buzzfeed_lol_article_feed, :buzzfeed_fail_article_feed,
+                :memebase_feed, :r_funny_article_feed
+
   queue_as :default
   TIME_TO_WAIT = 5.minutes
 
@@ -8,6 +10,8 @@ class UpdateRssFeedsJob < ActiveJob::Base
     update_chive_articles
     update_buzzfeed_lol_articles
     update_buzzfeed_fail_articles
+    update_memebase_articles
+    update_r_funny_articles
 
     sleep TIME_TO_WAIT
     self.class.perform_now
@@ -50,6 +54,31 @@ class UpdateRssFeedsJob < ActiveJob::Base
     else
       buzzfeed_fail_article_feed = Feedjira::Feed.fetch_and_parse('http://www.buzzfeed.com/fail.xml')
       BuzzfeedArticle.update_from_feed(buzzfeed_fail_article_feed.entries)
+    end
+  end
+
+  def update_memebase_articles
+    if memebase_feed
+      memebase_feed = Feedjira::Feed.update(memebase_feed)
+      MemebaseArticle.update_from_feed(memebase_feed.entries) if memebase_feed.updated?
+    else
+      memebase_feed = Feedjira::Feed.fetch_and_parse('http://feeds.feedblitz.com/Memebase&x=1')
+      MemebaseArticle.update_from_feed(memebase_feed.entries)
+    end
+  end
+
+  def update_r_funny_articles
+    if r_funny_article_feed
+      r_funny_article_feed = Feedjira::Feed.update(r_funny_article_feed)
+      RedditFunnyArticle.update_from_feed(r_funny_article_feed.entries) if r_funny_article_feed.updated?
+    else
+      # TODO how to get thumbnails?
+      # Feedjira::Feed.add_common_feed_entry_elements("media:thumbnail", :value => :url,    :as => :media_thumbnail_url)
+      # Feedjira::Feed.add_common_feed_entry_elements("media:thumbnail", :value => :height, :as => :media_thumbnail_height)
+      # Feedjira::Feed.add_common_feed_entry_elements("media:thumbnail", :value => :width,  :as => :media_thumbnail_width)
+      # feed = Feedjira::Feed.fetch_and_parse(@params[:feed_url][:value])
+      r_funny_article_feed = Feedjira::Feed.fetch_and_parse('https://www.reddit.com/r/funny/.rss')
+      RedditFunnyArticle.update_from_feed(r_funny_article_feed.entries)
     end
   end
 end

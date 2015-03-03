@@ -11,9 +11,13 @@
             <li class="list-group-item" style="background-color: rgb(217, 237, 247);">
               <%= link_to listing.title, joke_path(listing) %>  <span class='inline-source'>(<%= link_to listing.source, listing.guid %>)</span>
             </li>
+          <% elsif listing.class == RedditFunnyArticle %>
+            <li class="list-group-item" style="background-color: #dff0d8;">
+              <%= link_to listing.title, article_path(listing) %>  <span class='inline-source'>(<%= link_to listing.source, listing.guid %>)</span>
+            </li>
           <% else %>
             <li class="list-group-item" style="background-color: #dff0d8;">
-              <%= link_to listing.title, listing.guid, target: '_blank' %>  <span class='inline-source'>
+              <%= link_to listing.title, listing.guid %>  <span class='inline-source'>
                 (<%= link_to listing.source, listing.guid %>)</span>
             </li>
           <% end %>

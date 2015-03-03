@@ -1,5 +1,5 @@
 class BuzzfeedArticle < ActiveRecord::Base
-  validates_presence_of :title, :summary, :source, :guid
+  validates_presence_of :title, :source, :guid
 
   def self.update_from_feed(entries)
     add_entries(entries)
@@ -11,7 +11,7 @@ class BuzzfeedArticle < ActiveRecord::Base
     return unless entries.present?
     entries.each do |entry|
       unless exists? :guid => entry.id
-        create!(
+        create(
           :title   => entry.title,
           :summary => entry.summary,
           :source  => get_host_without_www(entry.url),

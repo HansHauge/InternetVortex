@@ -1,5 +1,5 @@
-class ChiveArticle < ActiveRecord::Base
-  validates_presence_of :title, :summary, :source, :guid, :image
+class MemebaseArticle < ActiveRecord::Base
+  validates_presence_of :title, :source, :guid
 
   def self.update_from_feed(entries)
     add_entries(entries)
@@ -13,11 +13,9 @@ class ChiveArticle < ActiveRecord::Base
       unless exists? :guid => entry.id
         create(
           :title   => entry.title,
-          :summary => entry.summary,
-          :source  => get_host_without_www(entry.url),
-          :guid    => entry.id,
           :categories => entry.categories,
-          :image => entry.image
+          :source  => get_host_without_www(entry.url),
+          :guid    => entry.entry_id
         )
       end
     end

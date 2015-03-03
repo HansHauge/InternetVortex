@@ -8,8 +8,12 @@
       <ul class="list-group">
         <% @articles.each do |article| %>
           <li class="list-group-item">
-            <%= link_to article.title, article.guid, target: '_blank' %>  <span class='inline-source'>
-              (<%= link_to article.source, article.guid %>)</span>
+            <% if article.is_a?(RedditFunnyArticle) %>
+              <%= link_to article.title, article_path(article) %>  <span class='inline-source'>(<%= link_to article.source, article.guid %>)</span>
+            <% else %>
+              <%= link_to article.title, article.guid %>  <span class='inline-source'>
+                (<%= link_to article.source, article.guid %>)</span>
+            <% end %>
           </li>
         <% end %>
       </ul>

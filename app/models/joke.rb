@@ -11,7 +11,7 @@ class Joke < ActiveRecord::Base
     return unless entries.present?
     entries.each do |entry|
       unless exists? :guid => entry.id
-        create!(
+        create(
           :title   => entry.title,
           :content => entry.summary,
           :source  => get_host_without_www(entry.url),
