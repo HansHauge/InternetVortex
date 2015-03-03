@@ -72,11 +72,7 @@ class UpdateRssFeedsJob < ActiveJob::Base
       r_funny_article_feed = Feedjira::Feed.update(r_funny_article_feed)
       RedditFunnyArticle.update_from_feed(r_funny_article_feed.entries) if r_funny_article_feed.updated?
     else
-      # TODO how to get thumbnails?
-      # Feedjira::Feed.add_common_feed_entry_elements("media:thumbnail", :value => :url,    :as => :media_thumbnail_url)
-      # Feedjira::Feed.add_common_feed_entry_elements("media:thumbnail", :value => :height, :as => :media_thumbnail_height)
-      # Feedjira::Feed.add_common_feed_entry_elements("media:thumbnail", :value => :width,  :as => :media_thumbnail_width)
-      # feed = Feedjira::Feed.fetch_and_parse(@params[:feed_url][:value])
+      Feedjira::Feed.add_common_feed_entry_elements("media:thumbnail", :value => :url,    :as => :media_thumbnail_url)
       r_funny_article_feed = Feedjira::Feed.fetch_and_parse('https://www.reddit.com/r/funny/.rss')
       RedditFunnyArticle.update_from_feed(r_funny_article_feed.entries)
     end

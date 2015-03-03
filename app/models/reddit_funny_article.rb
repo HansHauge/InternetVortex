@@ -8,7 +8,7 @@ class RedditFunnyArticle < ActiveRecord::Base
   end
 
   def actual_image
-    content.match(/">\[link\]/).pre_match.match(/"/).post_match.match(/<a href="/).post_match
+    content.match(/">\[link\]/).pre_match.match(/"/).post_match.match(/.*(href=")/).post_match
   end
 
   private
@@ -21,20 +21,10 @@ class RedditFunnyArticle < ActiveRecord::Base
           :title     => entry.title,
           :content   => entry.summary,
           :source    => get_host_without_www(entry.url),
-          :thumbnail => extract_thumbnail(entry.summary),
+          :thumbnail => entry.media_thumbnail_url.first,
           :guid      => entry.id
         )
       end
-    end
-  end
-
-  def self.extract_thumbnail(summary)
-    if summary.match(/<img src=/)
-      summary.match(/<img src="/).post_match.match(/"/).pre_match
-    # elsif summary.match(/i.imgur.com/)
-    #   '//i.imgur.com' << summary.match(/\/\/i.imgur.com/).post_match.match(/"/).pre_match
-    else
-      ""
     end
   end
 

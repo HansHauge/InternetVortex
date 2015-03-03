@@ -6,8 +6,7 @@
     <div class="panel-body">
       <ul class="list-group">
         <li class="list-group-item">
-          <%= image_tag @article.actual_image, class: 'img-responsive' %>
-          <%= @article.content.html_safe %><br>
+          <%= image_tag @article.actual_image, class: 'img-responsive' %><br>
           <span class='inline-source'>(<%= link_to @article.source, @article.guid %>)</span>
         </li>
       </ul>
