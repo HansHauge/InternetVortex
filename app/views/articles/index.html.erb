@@ -15,11 +15,19 @@
                 <% end %>
               </div>
               <div class='article-title'>
-                <%= link_to article.title, article_path(article) %>  <span class='inline-source'>(<%= link_to article.source, article.guid %>)</span>
+                <%= link_to article.title, article_path(article) %>  <span class='inline-source'>
+                  (<%= link_to article.source, article.guid %>)</span>
               </div>
             <% else %>
-              <%= link_to article.title, article.guid %>  <span class='inline-source'>
-                (<%= link_to article.source, article.guid %>)</span>
+              <div class='article-thumbnail'>
+                <%= link_to article.guid do %>
+                  <%= image_tag article.thumbnail, class: 'img-responsive' %>
+                <% end %>
+              </div>
+              <div class='article-title'>
+                <%= link_to article.title, article.guid %>  <span class='inline-source'>
+                  (<%= link_to article.source, article.guid %>)</span>
+              </div>
             <% end %>
           </li>
         <% end %>

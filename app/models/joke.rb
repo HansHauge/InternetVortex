@@ -1,5 +1,6 @@
 class Joke < ActiveRecord::Base
   validates_presence_of :title, :content, :source, :guid
+  validates_uniqueness_of :guid
 
   def self.update_from_feed(entries)
     add_entries(entries)

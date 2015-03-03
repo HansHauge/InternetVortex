@@ -1,5 +1,6 @@
 class BuzzfeedArticle < ActiveRecord::Base
   validates_presence_of :title, :source, :guid
+  validates_uniqueness_of :guid
 
   def self.update_from_feed(entries)
     add_entries(entries)
@@ -12,10 +13,11 @@ class BuzzfeedArticle < ActiveRecord::Base
     entries.each do |entry|
       unless exists? :guid => entry.id
         create(
-          :title   => entry.title,
-          :summary => entry.summary,
-          :source  => get_host_without_www(entry.url),
-          :guid    => entry.id
+          :title     => entry.title,
+          :summary   => entry.summary,
+          :source    => get_host_without_www(entry.url),
+          :thumbnail => entry.media_thumbnail_url.first,
+          :guid      => entry.id
         )
       end
     end

@@ -1,5 +1,6 @@
 class MemebaseArticle < ActiveRecord::Base
   validates_presence_of :title, :source, :guid
+  validates_uniqueness_of :guid
 
   def self.update_from_feed(entries)
     add_entries(entries)
@@ -12,13 +13,19 @@ class MemebaseArticle < ActiveRecord::Base
     entries.each do |entry|
       unless exists? :guid => entry.id
         create(
-          :title   => entry.title,
+          :title      => entry.title,
           :categories => entry.categories,
-          :source  => get_host_without_www(entry.url),
-          :guid    => entry.entry_id
+          :source     => get_host_without_www(entry.url),
+          :thumbnail  => find_or_create_thumbnail(entry.content),
+          :guid       => entry.entry_id
         )
       end
     end
+  end
+
+  def self.find_or_create_thumbnail(content)
+    thumb_string = content.match(/src='/).post_match.match(/'/).pre_match
+    thumb_string.include?('vine.co') ? 'https://vine.co/static/images/vine_glyph_2x.png' : thumb_string
   end
 
   def self.get_host_without_www(url)

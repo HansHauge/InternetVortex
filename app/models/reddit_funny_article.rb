@@ -1,5 +1,6 @@
 class RedditFunnyArticle < ActiveRecord::Base
   attr_accessor :actual_image
+   validates_uniqueness_of :guid
 
   validates_presence_of :title, :source, :guid, :content
 
@@ -8,7 +9,8 @@ class RedditFunnyArticle < ActiveRecord::Base
   end
 
   def actual_image
-    content.match(/">\[link\]/).pre_match.match(/"/).post_match.match(/.*(href=")/).post_match
+    image_url = content.match(/">\[link\]/).pre_match.match(/"/).post_match.match(/.*(href=")/).post_match + '.png'
+    image_url.match(/imgur.com\/gallery/) ? image_url.gsub('imgur.com/gallery', 'i.imgur.com') : image_url
   end
 
   private
@@ -21,11 +23,15 @@ class RedditFunnyArticle < ActiveRecord::Base
           :title     => entry.title,
           :content   => entry.summary,
           :source    => get_host_without_www(entry.url),
-          :thumbnail => entry.media_thumbnail_url.first,
+          :thumbnail => find_or_create_thumbnail(entry.media_thumbnail_url.first),
           :guid      => entry.id
         )
       end
     end
+  end
+
+  def self.find_or_create_thumbnail(url)
+    url || actual_image
   end
 
   def self.get_host_without_www(url)
