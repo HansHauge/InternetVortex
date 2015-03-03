@@ -11,6 +11,6 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = RedditFunnyArticle.find(params[:id])
+    @article = RedditFunnyArticle.friendly.find(params[:id])
   end
 end

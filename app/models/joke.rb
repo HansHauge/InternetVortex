@@ -1,4 +1,7 @@
 class Joke < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   validates_presence_of :title, :content, :source, :guid
   validates_uniqueness_of :guid
 
