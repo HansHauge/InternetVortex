@@ -15,7 +15,7 @@ class ChiveArticle < ActiveRecord::Base
         create(
           :title      => entry.title,
           :summary    => entry.summary,
-          :source     => get_host_without_www(entry.url),
+          :source     => 'thechive.com',
           :guid       => entry.url,
           :thumbnail  => entry.media_thumbnail_url.first,
           :categories => entry.categories,
@@ -23,11 +23,5 @@ class ChiveArticle < ActiveRecord::Base
         )
       end
     end
-  end
-
-  def self.get_host_without_www(url)
-    url = "http://#{url}" if URI.parse(url).scheme.nil?
-    host = URI.parse(url).host.downcase
-    host.start_with?('www.') ? host[4..-1] : host
   end
 end

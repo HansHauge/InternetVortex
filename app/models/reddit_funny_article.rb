@@ -32,7 +32,7 @@ class RedditFunnyArticle < ActiveRecord::Base
         create(
           :title     => entry.title,
           :content   => entry.summary,
-          :source    => get_host_without_www(entry.url),
+          :source    => 'reddit.com/r/funny',
           :thumbnail => find_or_create_thumbnail(entry.media_thumbnail_url.first, entry.summary),
           :guid      => entry.id
         )
@@ -42,11 +42,5 @@ class RedditFunnyArticle < ActiveRecord::Base
 
   def self.find_or_create_thumbnail(url, summary)
     url || actual_image(summary)
-  end
-
-  def self.get_host_without_www(url)
-    url = "http://#{url}" if URI.parse(url).scheme.nil?
-    host = URI.parse(url).host.downcase
-    host.start_with?('www.') ? host[4..-1] : host
   end
 end

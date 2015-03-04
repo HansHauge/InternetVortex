@@ -18,10 +18,10 @@
                   </div>
                 </div>
                 <div class='col-md-11'>
-                  <div class=''>
+
                     <%= link_to article.title, article_path(article) %>  <span class='inline-source'>
                       (<%= link_to article.source, article.guid %>)</span>
-                  </div>
+
                 </div>
               <% else %>
                 <div class='col-md-1'>
@@ -32,10 +32,10 @@
                   </div>
                 </div>
                 <div class='col-md-11'>
-                  <div class=''>
+
                     <%= link_to article.title, article.guid %>  <span class='inline-source'>
                       (<%= link_to article.source, article.guid %>)</span>
-                  </div>
+
                 </div>
               <% end %>
             </div>

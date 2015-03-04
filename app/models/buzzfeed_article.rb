@@ -15,7 +15,7 @@ class BuzzfeedArticle < ActiveRecord::Base
         create(
           :title     => entry.title,
           :summary   => entry.summary,
-          :source    => get_host_without_www(entry.url),
+          :source    => 'buzzfeed.com',
           :thumbnail => find_or_create_thumbnail(entry.media_thumbnail_url.first),
           :guid      => entry.id
         )
@@ -26,11 +26,5 @@ class BuzzfeedArticle < ActiveRecord::Base
   def self.find_or_create_thumbnail(thumb)
     default_image = "//s3-ak.buzzfed.com/static/images/global/buzzfeed-logo.png?v=201502271515"
     thumb || default_image
-  end
-
-  def self.get_host_without_www(url)
-    url = "http://#{url}" if URI.parse(url).scheme.nil?
-    host = URI.parse(url).host.downcase
-    host.start_with?('www.') ? host[4..-1] : host
   end
 end
