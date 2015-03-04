@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
   get 'jokes' => 'jokes#index'
   get 'jokes/:id' => 'jokes#show', as: 'joke'
-  get 'articles' => 'chive_articles#index'
+  get 'articles' => 'articles#index'
+  get 'about' => 'welcome#about'
+  get 'articles/:id' => 'articles#show', as: 'article'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'welcome#home'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
