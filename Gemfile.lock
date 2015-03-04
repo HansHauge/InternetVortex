@@ -83,6 +83,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    meta-tags (2.0.0)
+      actionpack (>= 3.0.0)
     method_source (0.8.2)
     mime-types (2.4.3)
     mini_portile (0.6.2)
@@ -161,8 +163,6 @@ GEM
     tilt (1.4.1)
     timers (4.0.1)
       hitimes
-    turbolinks (2.5.3)
-      coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.1)
@@ -181,6 +181,7 @@ DEPENDENCIES
   friendly_id
   jbuilder (~> 2.0)
   jquery-rails
+  meta-tags
   nokogiri (~> 1.6.6.2)
   pg
   pry
@@ -190,6 +191,5 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   sidekiq
   spring
-  turbolinks
   uglifier (>= 1.3.0)
   will_paginate (~> 3.0.6)
