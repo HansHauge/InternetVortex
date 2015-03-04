@@ -16,11 +16,16 @@ class BuzzfeedArticle < ActiveRecord::Base
           :title     => entry.title,
           :summary   => entry.summary,
           :source    => get_host_without_www(entry.url),
-          :thumbnail => entry.media_thumbnail_url.first,
+          :thumbnail => find_or_create_thumbnail(entry.media_thumbnail_url.first),
           :guid      => entry.id
         )
       end
     end
+  end
+
+  def self.find_or_create_thumbnail(thumb)
+    default_image = "//s3-ak.buzzfed.com/static/images/global/buzzfeed-logo.png?v=201502271515"
+    thumb || default_image
   end
 
   def self.get_host_without_www(url)
