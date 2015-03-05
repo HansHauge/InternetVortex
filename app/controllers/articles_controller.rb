@@ -34,6 +34,7 @@ class ArticlesController < ApplicationController
 
     sorted_articles = articles.sort { |x,y| x.created_at <=> y.created_at }.reverse
     @articles = sorted_articles.paginate(:page => params[:page], :per_page => 20)
+    @date_message = @articles.count > 0 ? "Select Date: " : "Try another date:"
 
     flash.now[:warning] = 'No content found...' if @articles.count == 0
   end

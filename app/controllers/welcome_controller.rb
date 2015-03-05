@@ -40,6 +40,7 @@ class WelcomeController < ApplicationController
     listings = articles.concat(jokes).sort { |x,y| x.created_at <=> y.created_at }.reverse
 
     @listings = listings.paginate(:page => params[:page], :per_page => 20)
+    @date_message = @listings.count > 0 ? "Select Date: " : "Try another date:"
 
     flash.now[:warning] = 'No content found...' if @listings.count == 0
   end

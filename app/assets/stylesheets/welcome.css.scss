@@ -20,3 +20,21 @@
 #navbar-spacer{
   margin-bottom: 50px;
 }
+
+.archive-date{
+  display: inline-block;
+  float: right;
+  form {
+    display: inline-block;
+  }
+}
+
+#fixed-height-subnav{
+  height: 36px;
+}
+
+#inner-content-wrapper{
+  img {
+    margin-bottom: 20px;
+  }
+}

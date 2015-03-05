@@ -4,16 +4,24 @@
        keywords: ['Joke Archive', "#{params[:date]}", 'Jokes']
 %>
 
-<% unless @jokes.count == 0 %>
+<% if @jokes.count > 0 %>
   <div id='outer-content-wrapper'>
-    <%= will_paginate @jokes, class: 'digg_pagination' %><br>
+    <div class='row' id='fixed-height-subnav'>
+      <%= will_paginate @jokes, class: 'digg_pagination' %>
+      <%= render 'layouts/date_picker', { channel: '/jokes', css: "archive-date" } %>
+    </div>
     <div class="panel panel-info">
       <div class="panel-heading">
         <h3 class="panel-title">Popular jokes from <%= params[:date] %></h3>
       </div>
-
-      <%= render 'listing_body_panel' %>
-
+      <%= render 'listing_panel_body' %>
+    </div>
+  </div>
+<% else %>
+  <div id='inner-content-wrapper'>
+    <%= image_tag 'derp.jpg' %>
+    <div class='row' id='fixed-height-subnav'>
+      <%= render 'layouts/date_picker', { channel: '/jokes', css: "" } %>
     </div>
   </div>
 <% end %>
