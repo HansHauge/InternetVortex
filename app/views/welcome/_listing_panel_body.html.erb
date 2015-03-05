@@ -1,0 +1,20 @@
+<div class="panel-body">
+  <ul class="list-group">
+    <% @listings.each do |listing| %>
+      <% if listing.class == Joke %>
+        <li class="list-group-item">
+          <%= link_to listing.title, joke_path(listing) %>  <span class='inline-source'>(<%= link_to listing.source, listing.guid %>)</span>
+        </li>
+      <% elsif listing.class == RedditFunnyArticle %>
+        <li class="list-group-item">
+          <%= link_to listing.title, article_path(listing) %>  <span class='inline-source'>(<%= link_to listing.source, listing.guid %>)</span>
+        </li>
+      <% else %>
+        <li class="list-group-item">
+          <%= link_to listing.title, listing.guid %>  <span class='inline-source'>
+            (<%= link_to listing.source, listing.guid %>)</span>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

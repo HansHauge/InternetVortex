@@ -1,0 +1,19 @@
+<%
+  meta title: "Top jokes from #{params[:date]}",
+       description: "Historical archive of the jokes from the web - taken on #{params[:date]}",
+       keywords: ['Joke Archive', "#{params[:date]}", 'Jokes']
+%>
+
+<% unless @jokes.count == 0 %>
+  <div id='outer-content-wrapper'>
+    <%= will_paginate @jokes, class: 'digg_pagination' %><br>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Popular jokes from <%= params[:date] %></h3>
+      </div>
+
+      <%= render 'listing_body_panel' %>
+
+    </div>
+  </div>
+<% end %>

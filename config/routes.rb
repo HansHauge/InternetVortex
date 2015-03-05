@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   get 'articles' => 'articles#index'
   get 'about' => 'welcome#about'
   get 'articles/:id' => 'articles#show', as: 'article'
+  get 'archive/:date' => 'welcome#archive'
+  get 'archive/articles/:date' => 'articles#archive'
+  get 'archive/jokes/:date' => 'jokes#archive'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

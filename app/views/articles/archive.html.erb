@@ -1,0 +1,19 @@
+<%
+  meta title: "Article Archive for #{params[:date]}",
+       description: 'Top Jokes, articles, images, stories and memes from the web',
+       keywords: ['Jokes', 'Funny Articles', 'Trending Humor', 'Funny Pictures']
+%>
+
+<% unless @articles.count == 0 %>
+  <div id='outer-content-wrapper'>
+    <%= will_paginate @articles, class: 'digg_pagination' %><br>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Article Archive for <%= params[:date] %> from All Sources</h3>
+      </div>
+
+      <%= render 'listing_panel_body' %>
+
+    </div>
+  </div>
+<% end %>
