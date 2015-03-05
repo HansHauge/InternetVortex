@@ -6,25 +6,22 @@
 
 <% if @articles.count > 0 %>
   <div id='outer-content-wrapper'>
-    <%= will_paginate @articles, class: 'digg_pagination' %>
-
-    <form method='link' action='#' id='archive-date-form' class="archive-date">
-      Select Date: <input type="text" id="article-datepicker" value="<%= params[:date] %>"> <input type='submit' value='Go'>
-    </form>
-
+    <div class='row' id='fixed-height-subnav'>
+      <%= will_paginate @articles, class: 'digg_pagination' %>
+      <%= render 'layouts/date_picker', { channel: '/articles', css: "archive-date" } %>
+    </div>
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title">Article Archive for <%= params[:date] %> from All Sources</h3>
       </div>
-
       <%= render 'listing_panel_body' %>
-
     </div>
   </div>
 <% else %>
-  <div id='outer-content-wrapper'>
-    <form method='link' action='#' id='archive-date-form'>
-      Try another date: <input type="text" id="article-datepicker" value="<%= params[:date] %>"> <input type='submit' value='Go'>
-    </form>
+  <div id='inner-content-wrapper'>
+    <%= image_tag 'derp.jpg' %>
+    <div class='row' id='fixed-height-subnav'>
+      <%= render 'layouts/date_picker', { channel: '/articles', css: "" } %>
+    </div>
   </div>
 <% end %>
