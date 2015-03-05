@@ -13,4 +13,28 @@ class ArticlesController < ApplicationController
   def show
     @article = RedditFunnyArticle.friendly.find(params[:id])
   end
+
+  def archive
+    begin
+      date = Time.parse(params[:date])
+    rescue ArgumentError
+      flash[:danger] = 'Invalid Date'
+      redirect_to '/articles'
+      return
+    end
+
+    time_range = date.at_beginning_of_day..date.at_end_of_day
+
+    chive_articles = ChiveArticle.where(created_at: time_range)
+    buzzfeed_articles = BuzzfeedArticle.where(created_at: time_range)
+    memebase_articles = MemebaseArticle.where(created_at: time_range)
+    r_funny_articles = RedditFunnyArticle.where(created_at: time_range)
+
+    articles = chive_articles.concat(buzzfeed_articles).concat(memebase_articles).concat(r_funny_articles)
+
+    sorted_articles = articles.sort { |x,y| x.created_at <=> y.created_at }.reverse
+    @articles = sorted_articles.paginate(:page => params[:page], :per_page => 20)
+
+    flash.now[:warning] = 'No content found...' if @articles.count == 0
+  end
 end
