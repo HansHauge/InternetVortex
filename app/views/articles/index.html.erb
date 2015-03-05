@@ -1,3 +1,9 @@
+<%
+  meta title: "Recent Articles",
+       description: 'The most recent funny articles from the internet',
+       keywords: ['Funny Pictures', 'Funny Stories', 'New Memes', 'Humorous Articles', 'Fresh Content']
+%>
+
 <div id='outer-content-wrapper'>
   <%= will_paginate @articles, class: 'digg_pagination' %><br>
   <div class="panel panel-success">
@@ -18,10 +24,8 @@
                   </div>
                 </div>
                 <div class='col-md-11'>
-
-                    <%= link_to article.title, article_path(article) %>  <span class='inline-source'>
+                  <%= link_to article.title, article_path(article) %>  <span class='inline-source'>
                       (<%= link_to article.source, article.guid %>)</span>
-
                 </div>
               <% else %>
                 <div class='col-md-1'>
@@ -32,10 +36,8 @@
                   </div>
                 </div>
                 <div class='col-md-11'>
-
-                    <%= link_to article.title, article.guid %>  <span class='inline-source'>
+                  <%= link_to article.title, article.guid %>  <span class='inline-source'>
                       (<%= link_to article.source, article.guid %>)</span>
-
                 </div>
               <% end %>
             </div>
