@@ -1,4 +1,8 @@
-<%= set_meta_tags title: 'All Recent Jokes' %>
+<%
+  meta title: "Recent Jokes",
+       description: 'The most recent jokes from the web',
+       keywords: ['New Jokes', 'Trending Jokes', 'Funny Jokes', 'Jokes']
+%>
 
 <div id='outer-content-wrapper'>
   <%= will_paginate @jokes, class: 'digg_pagination' %><br>

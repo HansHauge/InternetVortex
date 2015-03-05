@@ -1,4 +1,8 @@
-<%= set_meta_tags title: 'All Recent Funny Content' %>
+<%
+  meta title: "Recent Trending Humor",
+       description: 'Top Jokes, articles, images, stories and memes from the web',
+       keywords: ['Jokes', 'Funny Articles', 'Trending Humor', 'Funny Pictures']
+%>
 
 <div id='outer-content-wrapper'>
   <%= will_paginate @listings, class: 'digg_pagination' %><br>

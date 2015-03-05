@@ -1,4 +1,8 @@
-<%= set_meta_tags title: 'All Recent Articles' %>
+<%
+  meta title: "Recent Articles",
+       description: 'The most recent funny articles from the internet',
+       keywords: ['Funny Pictures', 'Funny Stories', 'New Memes', 'Humorous Articles', 'Fresh Content']
+%>
 
 <div id='outer-content-wrapper'>
   <%= will_paginate @articles, class: 'digg_pagination' %><br>

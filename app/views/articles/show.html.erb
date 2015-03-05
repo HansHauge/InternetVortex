@@ -1,4 +1,7 @@
-<%= set_meta_tags title: @article.title %>
+<%
+  meta title: "Funny Article",
+       keywords: @article.title.to_keywords
+%>
 
 <div id='outer-content-wrapper'>
   <div class="panel panel-info">
