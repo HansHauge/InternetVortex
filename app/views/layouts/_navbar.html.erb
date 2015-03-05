@@ -20,8 +20,8 @@
             <li><a href="/contact">Contact</a></li>
             <li class="divider"></li>
             <li class="dropdown-header">Archive</li>
-            <li><%= link_to "Jokes Archive", "/archive/jokes/#{Date.today.strftime('%B-%d-%Y')}" %></li>
-            <li><%= link_to "Article Archive", "/archive/jokes/#{Date.today.strftime('%B-%d-%Y')}" %></li>
+            <li><%= link_to "Jokes Archive", "/archive/jokes/#{Date.yesterday.strftime('%B-%d-%Y')}" %></li>
+            <li><%= link_to "Article Archive", "/archive/articles/#{Date.yesterday.strftime('%B-%d-%Y')}" %></li>
           </ul>
         </li>
       </ul>
