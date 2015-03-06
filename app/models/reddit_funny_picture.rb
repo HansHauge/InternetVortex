@@ -1,4 +1,4 @@
-class RedditFunnyArticle < ActiveRecord::Base
+class RedditFunnyPicture < ActiveRecord::Base
   attr_accessor :actual_image
 
   require 'ext/string'

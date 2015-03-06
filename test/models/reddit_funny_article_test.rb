@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RedditFunnyArticleTest < ActiveSupport::TestCase
+class RedditFunnyPictureTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

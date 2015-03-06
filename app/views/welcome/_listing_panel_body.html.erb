@@ -1,0 +1,39 @@
+<div class="panel-body">
+  <ul class="list-group">
+    <% @listings.each do |listing| %>
+      <li class="list-group-item slim-list-group-item">
+        <div class='row'>
+          <% if listing.class == Joke %>
+            <div class='col-md-12'>
+              <%= link_to listing.title, joke_path(listing) %>  <span class='inline-source'>(<%= link_to listing.source, listing.guid %>)</span>
+            </div>
+          <% elsif listing.class == RedditFunnyPicture %>
+            <div class='col-md-1'>
+                <div class='article-thumbnail'>
+                  <%= link_to picture_path(listing) do %>
+                    <%= image_tag listing.thumbnail, class: 'img-responsive' %>
+                  <% end %>
+                </div>
+            </div>
+            <div class='col-md-11'>
+              <%= link_to listing.title, picture_path(listing) %>  <span class='inline-source'>
+                  (<%= link_to listing.source, listing.guid %>)</span>
+            </div>
+          <% else %>
+            <div class='col-md-1'>
+              <div class='article-thumbnail'>
+                <%= link_to listing.guid do %>
+                  <%= image_tag listing.thumbnail, class: 'img-responsive' %>
+                <% end %>
+              </div>
+            </div>
+            <div class='col-md-11'>
+              <%= link_to listing.title, listing.guid %>  <span class='inline-source'>
+                  (<%= link_to listing.source, listing.guid %>)</span>
+            </div>
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>InternetVortex</title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%
+      metamagic site: "InternetVortex: The High Quality Humor Engine", title: [:title, :site], separator: " — "
+    %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
+    <%= metamagic %>
   </head>
   <body>
     <%= render 'layouts/navbar' %>
     <div class='container-fluid'>
       <div class="row">
         <div class="col-md-8">
+          <div class="container">
 
-          <%= yield %>
+            <%= yield %>
 
+          </div>
         </div>
         <div class="col-md-4">
           <div class='profit-column'>

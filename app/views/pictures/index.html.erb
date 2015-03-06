@@ -1,0 +1,16 @@
+<%
+  meta title: "Recent Pictures",
+       description: 'The most recent funny pictures from the internet',
+       keywords: ['Funny Pictures', 'Funny Gifs', 'New Funny Images']
+%>
+
+<div id='outer-content-wrapper'>
+  <%= will_paginate @pictures, class: 'digg_pagination' %><br>
+  <div class="panel panel-warning">
+    <div class="panel-heading">
+      <h3 class="panel-title">Recent Pictures</h3>
+    </div>
+      <%= render 'listing_panel_body' %>
+  </div>
+  <%= will_paginate @pictures, class: 'digg_pagination' %>
+</div>
