@@ -17,6 +17,7 @@
       <%= render 'listing_panel_body' %>
     </div>
   </div>
+  <%= will_paginate @articles, class: 'digg_pagination' %>
 <% else %>
   <div id='inner-content-wrapper'>
     <%= image_tag 'derp.jpg' %>
