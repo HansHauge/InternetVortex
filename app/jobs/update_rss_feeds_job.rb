@@ -1,6 +1,12 @@
 class UpdateRssFeedsJob < ActiveJob::Base
-  attr_accessor :r_jokes_feed, :chive_article_feed, :buzzfeed_lol_article_feed, :buzzfeed_fail_article_feed,
-                :memebase_feed, :r_funny_pictures_feed, :cracked_article_feed
+  attr_accessor  :r_jokes_feed,
+                 :chive_article_feed,
+                 :buzzfeed_lol_article_feed,
+                 :buzzfeed_fail_article_feed,
+                 :memebase_feed,
+                 :r_funny_pictures_feed,
+                 :cracked_article_feed,
+                 :break_video_feed
 
   queue_as :default
   TIME_TO_WAIT = 5.minutes
@@ -13,6 +19,7 @@ class UpdateRssFeedsJob < ActiveJob::Base
     update_memebase_articles
     update_r_funny_pictures
     update_cracked_articles
+    update_break_videos
 
     sleep TIME_TO_WAIT
     self.class.perform_now
@@ -91,6 +98,16 @@ class UpdateRssFeedsJob < ActiveJob::Base
       Feedjira::Feed.add_common_feed_entry_elements("media", :value => :url,    :as => :media)
       cracked_article_feed = Feedjira::Feed.fetch_and_parse('http://feeds.feedburner.com/CrackedRSS')
       CrackedArticle.update_from_feed(cracked_article_feed.entries)
+    end
+  end
+
+  def update_break_videos
+    if break_video_feed
+      break_video_feed = Feedjira::Feed.update(break_video_feed)
+      BreakVideo.update_from_feed(break_video_feed.new_entries) if break_video_feed.updated?
+    else
+      break_video_feed = Feedjira::Feed.fetch_and_parse('http://feeds.feedburner.com/BreakVideos')
+      BreakVideo.update_from_feed(break_video_feed.entries)
     end
   end
 end

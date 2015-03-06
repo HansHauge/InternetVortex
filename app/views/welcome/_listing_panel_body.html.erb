@@ -5,32 +5,14 @@
         <div class='row'>
           <% if listing.class == Joke %>
             <div class='col-md-12'>
-              <%= link_to listing.title, joke_path(listing) %>  <span class='inline-source'>(<%= link_to listing.source, listing.guid %>)</span>
+              <%= render 'jokes/joke_index_row', joke: listing %>
             </div>
+          <% elsif listing.class == BreakVideo %>
+            <%= render 'videos/video_index_row', video: listing %>
           <% elsif listing.class == RedditFunnyPicture %>
-            <div class='col-md-1'>
-                <div class='article-thumbnail'>
-                  <%= link_to picture_path(listing) do %>
-                    <%= image_tag listing.thumbnail, class: 'img-responsive' %>
-                  <% end %>
-                </div>
-            </div>
-            <div class='col-md-11'>
-              <%= link_to listing.title, picture_path(listing) %>  <span class='inline-source'>
-                  (<%= link_to listing.source, listing.guid %>)</span>
-            </div>
+            <%= render 'pictures/picture_index_row', picture: listing %>
           <% else %>
-            <div class='col-md-1'>
-              <div class='article-thumbnail'>
-                <%= link_to listing.guid do %>
-                  <%= image_tag listing.thumbnail, class: 'img-responsive' %>
-                <% end %>
-              </div>
-            </div>
-            <div class='col-md-11'>
-              <%= link_to listing.title, listing.guid %>  <span class='inline-source'>
-                  (<%= link_to listing.source, listing.guid %>)</span>
-            </div>
+            <%= render 'articles/article_index_row', article: listing %>
           <% end %>
         </div>
       </li>
