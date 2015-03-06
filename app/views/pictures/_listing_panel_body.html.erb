@@ -1,18 +1,18 @@
 <div class="panel-body">
   <ul class="list-group">
-    <% @articles.each do |article| %>
+    <% @pictures.each do |picture| %>
       <li class="list-group-item slim-list-group-item">
         <div class='row'>
           <div class='col-md-1'>
             <div class='article-thumbnail'>
-              <%= link_to article.guid do %>
-                <%= image_tag article.thumbnail, class: 'img-responsive' %>
+              <%= link_to picture_path(picture) do %>
+                <%= image_tag picture.thumbnail, class: 'img-responsive' %>
               <% end %>
             </div>
           </div>
           <div class='col-md-11'>
-            <%= link_to article.title, article.guid %>  <span class='inline-source'>
-                (<%= link_to article.source, article.guid %>)</span>
+            <%= link_to picture.title, picture_path(picture) %>  <span class='inline-source'>
+                (<%= link_to picture.source, picture.guid %>)</span>
           </div>
         </div>
       </li>

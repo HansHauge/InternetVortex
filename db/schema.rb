@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303072217) do
+ActiveRecord::Schema.define(version: 20150306022315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20150303072217) do
     t.string   "thumbnail"
   end
 
-  create_table "reddit_funny_articles", force: :cascade do |t|
+  create_table "reddit_funny_pictures", force: :cascade do |t|
     t.string   "title"
     t.string   "source"
     t.string   "guid"
@@ -71,6 +71,6 @@ ActiveRecord::Schema.define(version: 20150303072217) do
     t.string   "slug"
   end
 
-  add_index "reddit_funny_articles", ["slug"], name: "index_reddit_funny_articles_on_slug", using: :btree
+  add_index "reddit_funny_pictures", ["slug"], name: "index_reddit_funny_pictures_on_slug", using: :btree
 
 end

@@ -1,0 +1,28 @@
+<%
+  meta title: "Funny Picture",
+       keywords: @picture.title.to_keywords
+%>
+
+<div id='outer-content-wrapper'>
+  <div class="panel panel-warning">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= @picture.title %></h3>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <% if @picture.actual_image.ends_with?('.gifv') %>
+            <video autoplay loop muted preload>
+              <source src="<%= gifv_sub_webm(@picture.actual_image) %>" type='video/webm'>
+              <source src="<%= gifv_sub_mp4(@picture.actual_image) %>" type='video/mp4'>
+            </video>
+          <% else %>
+            <%= image_tag @picture.actual_image, class: 'img-responsive' %>
+          <% end %>
+          <br>
+          <span class='inline-source'>(<%= link_to @picture.source, @picture.guid %>)</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
