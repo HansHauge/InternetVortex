@@ -1,6 +1,6 @@
 class UpdateRssFeedsJob < ActiveJob::Base
   attr_accessor :r_jokes_feed, :chive_article_feed, :buzzfeed_lol_article_feed, :buzzfeed_fail_article_feed,
-                :memebase_feed, :r_funny_article_feed
+                :memebase_feed, :r_funny_pictures_feed
 
   queue_as :default
   TIME_TO_WAIT = 5.minutes
@@ -11,7 +11,7 @@ class UpdateRssFeedsJob < ActiveJob::Base
     update_buzzfeed_lol_articles
     update_buzzfeed_fail_articles
     update_memebase_articles
-    update_r_funny_articles
+    update_r_funny_pictures
 
     sleep TIME_TO_WAIT
     self.class.perform_now
@@ -71,14 +71,14 @@ class UpdateRssFeedsJob < ActiveJob::Base
     end
   end
 
-  def update_r_funny_articles
-    if r_funny_article_feed
-      r_funny_article_feed = Feedjira::Feed.update(r_funny_article_feed)
-      RedditFunnyArticle.update_from_feed(r_funny_article_feed.new_entries) if r_funny_article_feed.updated?
+  def update_r_funny_pictures
+    if r_funny_pictures_feed
+      r_funny_pictures_feed = Feedjira::Feed.update(r_funny_pictures_feed)
+      RedditFunnyPicture.update_from_feed(r_funny_pictures_feed.new_entries) if r_funny_pictures_feed.updated?
     else
       Feedjira::Feed.add_common_feed_entry_elements("media:thumbnail", :value => :url,    :as => :media_thumbnail_url)
-      r_funny_article_feed = Feedjira::Feed.fetch_and_parse('https://www.reddit.com/r/funny/.rss')
-      RedditFunnyArticle.update_from_feed(r_funny_article_feed.entries)
+      r_funny_pictures_feed = Feedjira::Feed.fetch_and_parse('https://www.reddit.com/r/funny/.rss')
+      RedditFunnyPicture.update_from_feed(r_funny_pictures_feed.entries)
     end
   end
 end

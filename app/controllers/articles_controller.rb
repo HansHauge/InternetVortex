@@ -5,15 +5,14 @@ class ArticlesController < ApplicationController
     chive_articles = ChiveArticle.where(created_at: time_range)
     buzzfeed_articles = BuzzfeedArticle.where(created_at: time_range)
     memebase_articles = MemebaseArticle.where(created_at: time_range)
-    r_funny_articles = RedditFunnyArticle.where(created_at: time_range)
-    articles = chive_articles.concat(buzzfeed_articles).concat(memebase_articles).concat(r_funny_articles)
+    articles = chive_articles.concat(buzzfeed_articles).concat(memebase_articles)
 
     sorted_articles = articles.sort { |x,y| x.created_at <=> y.created_at }.reverse
     @articles = sorted_articles.paginate(:page => params[:page], :per_page => 30)
   end
 
   def show
-    @article = RedditFunnyArticle.friendly.find(params[:id])
+    @article = RedditFunnyPicture.friendly.find(params[:id])
   end
 
   def archive
@@ -30,15 +29,14 @@ class ArticlesController < ApplicationController
     chive_articles = ChiveArticle.where(created_at: time_range)
     buzzfeed_articles = BuzzfeedArticle.where(created_at: time_range)
     memebase_articles = MemebaseArticle.where(created_at: time_range)
-    r_funny_articles = RedditFunnyArticle.where(created_at: time_range)
 
-    articles = chive_articles.concat(buzzfeed_articles).concat(memebase_articles).concat(r_funny_articles)
+    articles = chive_articles.concat(buzzfeed_articles).concat(memebase_articles)
 
     sorted_articles = articles.sort { |x,y| x.created_at <=> y.created_at }.reverse
     @articles = sorted_articles.paginate(:page => params[:page], :per_page => 30)
     @archive = true
     @channel = '/articles'
 
-    flash.now[:warning] = 'No content found...' if @articles.count == 0
+    flash.now[:danger] = 'No content found...' if @articles.count == 0
   end
 end
