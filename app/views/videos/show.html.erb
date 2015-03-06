@@ -1,0 +1,29 @@
+<%
+  meta title: "Video",
+       description: @video.summary.to_description,
+       keywords: @video.title.to_keywords
+%>
+
+<div id='outer-content-wrapper'>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= @video.title %></h3>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <% if @video.thumbnail.is_probably_a_picture? %>
+            <%= image_tag @video.thumbnail, class: 'img-responsive' %>
+          <% else %>
+            <video autoplay loop muted preload>
+              <source src="<%= @video.thumbnail %>" type='video/webm'>
+              <source src="<%= @video.thumbnail %>" type='video/mp4'>
+            </video>
+          <% end %>
+          <br>
+          <span class='inline-source'>(<%= link_to @video.source, @video.guid %>)</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

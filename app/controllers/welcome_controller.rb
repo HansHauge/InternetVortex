@@ -41,8 +41,9 @@ class WelcomeController < ApplicationController
     cracked_articles = CrackedArticle.where(created_at: time_range)
     r_funny_pictures = RedditFunnyPicture.where(created_at: time_range)
     jokes = Joke.where(created_at: time_range)
+    videos = BreakVideo.where(created_at: time_range)
 
-    [chive_articles, buzzfeed_articles, memebase_articles, r_funny_pictures, jokes, cracked_articles].each do |source|
+    [chive_articles, buzzfeed_articles, memebase_articles, r_funny_pictures, jokes, cracked_articles, videos].each do |source|
       unsorted_listings.concat(source)
     end
 
