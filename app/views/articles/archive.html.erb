@@ -8,7 +8,6 @@
   <div id='outer-content-wrapper'>
     <div class='row' id='fixed-height-subnav'>
       <%= will_paginate @articles, class: 'digg_pagination' %>
-      <%= render 'layouts/date_picker', { channel: '/articles', css: "archive-date" } %>
     </div>
     <div class="panel panel-primary">
       <div class="panel-heading">
@@ -21,8 +20,5 @@
 <% else %>
   <div id='inner-content-wrapper'>
     <%= image_tag 'derp.jpg' %>
-    <div class='row' id='fixed-height-subnav'>
-      <%= render 'layouts/date_picker', { channel: '/articles', css: "" } %>
-    </div>
   </div>
 <% end %>

@@ -1,3 +1,5 @@
-<form method='link' action='#' id='archive-date-form' class="<%= css %>" data-root-url="/archive<%= channel %>/">
-  <%= @date_message %> <input type="text" id="datepicker" value="<%= params[:date] %>"> <input type='submit' value='Go'>
+<form method='link' action='#' id='archive-date-form' class="form-inline <%= css %>" data-root-url="/archive<%= channel %>/">
+  <div class="form-group">
+    <input type="text" class="form-control" id="datepicker" placeholder="Select Date">
+  </div>
 </form>

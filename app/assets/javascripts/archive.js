@@ -6,6 +6,7 @@ $(function() {
 
     onSelect: function(dateText) {
       $('#archive-date-form').attr('action', baseUrl + dateText);
+      $('#archive-date-form').submit();
     }
   });
 });

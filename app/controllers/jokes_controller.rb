@@ -23,7 +23,8 @@ class JokesController < ApplicationController
     time_range = date.at_beginning_of_day..date.at_end_of_day
 
     @jokes = Joke.where(created_at: time_range).paginate(:page => params[:page], :per_page => 30)
-    @date_message = @jokes.count > 0 ? "Select Date: " : "Try another date:"
+    @archive = true
+    @channel = '/jokes'
 
     flash.now[:warning] = 'No content found...' if @jokes.count == 0
   end
