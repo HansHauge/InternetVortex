@@ -33,14 +33,18 @@ class RedditFunnyPicture < ActiveRecord::Base
           :title     => entry.title,
           :content   => entry.summary,
           :source    => 'reddit.com/r/funny',
-          :thumbnail => find_or_create_thumbnail(entry.media_thumbnail_url.first, entry.summary),
+          :thumbnail => find_or_create_thumbnail(entry, entry.summary),
           :guid      => entry.id
         )
       end
     end
   end
 
-  def self.find_or_create_thumbnail(url, summary)
-    url || actual_image(summary)
+  def self.find_or_create_thumbnail(entry, summary)
+    if entry.try(:media_thumbnail_url)
+      entry.media_thumbnail_url.first
+    else
+      actual_image(summary)
+    end
   end
 end
