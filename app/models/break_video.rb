@@ -18,17 +18,18 @@ class BreakVideo < ActiveRecord::Base
         create(
           :title      => entry.title,
           :source     => 'break.com',
-          :thumbnail  => find_or_create_thumbnail(entry),
+          :thumbnail  => default_image,
           :summary    => entry.summary,
-          :guid       => entry.entry_id
+          :guid       => entry.entry_id,
+          :video_link => find_or_create_video(entry)
         )
       end
     end
   end
 
-  def self.find_or_create_thumbnail(entry)
-    finder = ThumbnailSetter.new(entry: entry, default_image: default_image, summary_or_content: entry.summary)
-    finder.find_or_create_thumbnail
+  def self.find_or_create_video(entry)
+    parser = VideoParser.new(entry: entry, default_image: default_image, summary_or_content: entry.content)
+    parser.find_or_create_video
   end
 
   def self.default_image

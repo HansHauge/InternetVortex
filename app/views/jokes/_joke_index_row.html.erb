@@ -1,1 +1,10 @@
-<%= link_to joke.title, joke_path(joke) %>  <span class='inline-source'>(<%= link_to joke.source, joke.guid %>)</span>
+<div class='col-md-1'>
+  <div class='article-thumbnail'>
+    <%= link_to joke_path(joke) do %>
+      <%= image_tag joke.thumbnail, class: 'img-responsive' %>
+    <% end %>
+  </div>
+</div>
+<div class='col-md-11'>
+  <%= link_to joke.title, joke_path(joke) %>  <span class='inline-source'>(<%= link_to joke.source, joke.guid %>)</span>
+</div>

@@ -12,14 +12,12 @@
     <div class="panel-body">
       <ul class="list-group">
         <li class="list-group-item">
-          <% if @video.thumbnail.is_probably_a_picture? %>
-            <%= image_tag @video.thumbnail, class: 'img-responsive' %>
-          <% else %>
-            <video autoplay loop muted preload>
-              <source src="<%= @video.thumbnail %>" type='video/webm'>
-              <source src="<%= @video.thumbnail %>" type='video/mp4'>
+          <div class='media'>
+            <video autoplay loop controls preload>
+              <source src="<%= @video.video_link %>" type='video/webm'>
+              <source src="<%= @video.video_link %>" type='video/mp4'>
             </video>
-          <% end %>
+          </div>
           <br>
           <span class='inline-source'>(<%= link_to @video.source, @video.guid %>)</span>
         </li>

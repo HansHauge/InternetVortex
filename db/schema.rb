@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306052709) do
+ActiveRecord::Schema.define(version: 20150308204635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,49 +25,18 @@ ActiveRecord::Schema.define(version: 20150306052709) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "slug"
+    t.string   "video_link"
   end
 
   add_index "break_videos", ["slug"], name: "index_break_videos_on_slug", using: :btree
 
-  create_table "buzzfeed_articles", force: :cascade do |t|
-    t.string   "title"
-    t.text     "summary"
-    t.string   "source"
-    t.string   "guid"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "thumbnail"
-  end
-
-  create_table "chive_articles", force: :cascade do |t|
-    t.string   "title"
-    t.string   "guid"
-    t.string   "source"
-    t.text     "summary"
-    t.string   "categories"
-    t.string   "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "thumbnail"
-  end
-
-  create_table "cracked_articles", force: :cascade do |t|
-    t.string   "title"
-    t.text     "summary"
-    t.string   "source"
-    t.string   "guid"
-    t.string   "thumbnail"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "jokes", force: :cascade do |t|
     t.text     "title"
     t.text     "content"
-    t.string   "source",     limit: 255
+    t.string   "source"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "guid",       limit: 255
+    t.string   "guid"
     t.string   "slug"
   end
 
@@ -81,7 +50,11 @@ ActiveRecord::Schema.define(version: 20150306052709) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "thumbnail"
+    t.string   "slug"
+    t.text     "summary"
   end
+
+  add_index "memebase_articles", ["slug"], name: "index_memebase_articles_on_slug", using: :btree
 
   create_table "reddit_funny_pictures", force: :cascade do |t|
     t.string   "title"

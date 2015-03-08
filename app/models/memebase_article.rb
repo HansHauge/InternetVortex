@@ -1,4 +1,7 @@
 class MemebaseArticle < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   validates_presence_of :title, :source, :guid
   validates_uniqueness_of :guid
 
@@ -15,6 +18,7 @@ class MemebaseArticle < ActiveRecord::Base
         create(
           :title      => entry.title,
           :categories => entry.categories,
+          :summary    => entry.content,
           :source     => 'memebase.cheezburger.com',
           :thumbnail  => find_or_create_thumbnail(entry),
           :guid       => entry.entry_id
