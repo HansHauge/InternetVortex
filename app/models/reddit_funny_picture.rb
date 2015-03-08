@@ -54,16 +54,3 @@ class RedditFunnyPicture < ActiveRecord::Base
     '//c.thumbs.redditmedia.com/UNcO-h_QcS9PD-Gn.jpg'
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
