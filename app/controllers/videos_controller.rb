@@ -5,7 +5,7 @@ class VideosController < ApplicationController
     time_range = (DateTime.current - 1.day)..DateTime.current
 
     videos = BreakVideo.where(created_at: time_range).sort { |x,y| x.created_at <=> y.created_at }.reverse
-    @videos = videos.paginate(:page => params[:page], :per_page => 30)
+    @videos = videos.paginate(:page => params[:page], :per_page => 10)
   end
 
   def show
@@ -22,7 +22,7 @@ class VideosController < ApplicationController
     end
 
     time_range = date.at_beginning_of_day..date.at_end_of_day
-    @videos = BreakVideo.where(created_at: time_range).paginate(:page => params[:page], :per_page => 30)
+    @videos = BreakVideo.where(created_at: time_range).paginate(:page => params[:page], :per_page => 10)
     flash.now[:danger] = 'No content found...' if @videos.count == 0
   end
 
