@@ -5,12 +5,12 @@
 %>
 
 <div id='outer-content-wrapper'>
-  <%= will_paginate @videos, class: 'digg_pagination' %><br>
+  <%= will_paginate @videos, renderer: BootstrapPagination::Rails %><br>
   <div class="panel panel-danger">
     <div class="panel-heading">
       <h3 class="panel-title">Recent Videos</h3>
     </div>
       <%= render 'listing_panel_body' %>
   </div>
-  <%= will_paginate @videos, class: 'digg_pagination' %>
+  <%= will_paginate @videos, renderer: BootstrapPagination::Rails %>
 </div>
