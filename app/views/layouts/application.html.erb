@@ -11,6 +11,27 @@
     <%= metamagic %>
   </head>
   <body>
+    <% if false %>
+       <!-- Just turning off FB until launch -->
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '1554449104836544',
+            xfbml      : true,
+            version    : 'v2.2'
+          });
+        };
+
+        (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = "//connect.facebook.net/en_US/sdk.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+      </script>
+    <% end %>
+
     <%= render 'layouts/navbar' %>
     <div class='container-fluid'>
       <div class="row">
@@ -23,20 +44,26 @@
         </div>
         <div class="col-md-4">
           <div class='profit-column'>
-            <%= render 'layouts/right_ad_column' %>
+            <% if false %>
+              <!-- Just turning off the ads for now -->
+              <%= render 'layouts/right_ad_column' %>
+            <% end %>
           </div>
         </div>
       </div>
       <div class='row'>
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- footer-banner -->
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:728px;height:90px"
-             data-ad-client="ca-pub-1535464165045682"
-             data-ad-slot="4849470586"></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+        <% if false %>
+        <!-- Just turning off the ads for now -->
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- footer-banner -->
+          <ins class="adsbygoogle"
+               style="display:inline-block;width:728px;height:90px"
+               data-ad-client="ca-pub-1535464165045682"
+               data-ad-slot="4849470586"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        <% end %>
       </div>
     </div>
   </body>

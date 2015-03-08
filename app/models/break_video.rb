@@ -27,18 +27,11 @@ class BreakVideo < ActiveRecord::Base
   end
 
   def self.find_or_create_thumbnail(entry)
-    return entry.image if entry.image.present?
+    finder = ThumbnailSetter.new(entry: entry, default_image: default_image)
+    finder.find_or_create_thumbnail
+  end
 
-    default_image = '//media1.break.com/break/img/site/nav/brk-logo5.png'
-    youtube_image = '//www.youtube.com/yt/brand/media/image/YouTube-logo-full_color.png'
-    vine_image = '//vine.co/static/images/vine_glyph_2x.png'
-
-    return youtube_image if entry.summary.match(/youtube.com/)
-    if entry.summary.match(/src='/)
-      thumb_string = entry.summary.match(/src='/).post_match.match(/'/).pre_match
-      thumb_string.include?('vine.co') ? vine_image : thumb_string
-    else
-      default_image
-    end
+  def self.default_image
+    '//media1.break.com/break/img/site/nav/brk-logo5.png'
   end
 end

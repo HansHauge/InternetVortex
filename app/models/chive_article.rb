@@ -17,11 +17,20 @@ class ChiveArticle < ActiveRecord::Base
           :summary    => entry.summary,
           :source     => 'thechive.com',
           :guid       => entry.url,
-          :thumbnail  => entry.media_thumbnail_url.first,
+          :thumbnail  => find_or_create_thumbnail(entry),
           :categories => entry.categories,
           :image      => entry.image
         )
       end
     end
+  end
+
+  def self.find_or_create_thumbnail(entry)
+    finder = ThumbnailSetter.new(entry: entry, default_image: default_image)
+    finder.find_or_create_thumbnail
+  end
+
+  def self.default_image
+    '//cdn.shopify.com/s/files/1/0065/0022/products/theCHIVE-White_Square_Design_medium.jpg?v=1420647873'
   end
 end
