@@ -6,6 +6,11 @@
   </div>
 </div>
 <div class='col-md-11'>
-  <%= link_to picture.title, picture_path(picture) %>  <span class='inline-source'>
-      (<%= link_to picture.source, picture.guid %>)</span>
+  <% if imgur_gallery?(picture.actual_image) %>
+    <%= link_to picture.title, picture.actual_image %>
+  <% else %>
+    <%= link_to picture.title, picture_path(picture) %>
+  <% end %>
+
+  <span class='inline-source'> (<%= link_to picture.source, picture.guid %>)</span>
 </div>
