@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306022315) do
+ActiveRecord::Schema.define(version: 20150306052709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "break_videos", force: :cascade do |t|
+    t.string   "title"
+    t.text     "summary"
+    t.string   "guid"
+    t.string   "source"
+    t.string   "thumbnail"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "slug"
+  end
+
+  add_index "break_videos", ["slug"], name: "index_break_videos_on_slug", using: :btree
 
   create_table "buzzfeed_articles", force: :cascade do |t|
     t.string   "title"
@@ -36,6 +49,16 @@ ActiveRecord::Schema.define(version: 20150306022315) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "thumbnail"
+  end
+
+  create_table "cracked_articles", force: :cascade do |t|
+    t.string   "title"
+    t.text     "summary"
+    t.string   "source"
+    t.string   "guid"
+    t.string   "thumbnail"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "jokes", force: :cascade do |t|

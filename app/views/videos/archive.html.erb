@@ -1,0 +1,23 @@
+<%
+  meta title: "Video Archive for #{params[:date]}",
+       description: 'Top funny videos from the whole web',
+       keywords: ['Funny Videos', 'Trending Videos', 'Funny Video Archive']
+%>
+
+<% if @videos.count > 0 %>
+  <div id='outer-content-wrapper'>
+    <%= will_paginate @videos, renderer: BootstrapPagination::Rails %>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Video Archive for <%= params[:date] %> from All Sources</h3>
+      </div>
+      <%= render 'listing_panel_body' %>
+    </div>
+  </div>
+  <%= will_paginate @videos, renderer: BootstrapPagination::Rails %>
+<% else %>
+  <div id='inner-content-wrapper'>
+    <%= image_tag 'derp.jpg' %>
+  </div>
+<% end %>

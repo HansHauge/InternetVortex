@@ -1,4 +1,6 @@
 class PicturesController < ApplicationController
+  before_action :set_archive_instance_variables, only: [:archive]
+
   def index
     time_range = (DateTime.current - 1.day)..DateTime.current
     pictures = RedditFunnyPicture.where(created_at: time_range).sort { |x,y| x.created_at <=> y.created_at }.reverse
@@ -19,13 +21,14 @@ class PicturesController < ApplicationController
     end
 
     time_range = date.at_beginning_of_day..date.at_end_of_day
-    r_funny_pictures = RedditFunnyPicture.where(created_at: time_range)
+    @pictures = RedditFunnyPicture.where(created_at: time_range).paginate(:page => params[:page], :per_page => 30)
+    flash.now[:danger] = 'No content found...' if @pictures.count == 0
+  end
 
-    pictures = r_funny_pictures.sort { |x,y| x.created_at <=> y.created_at }.reverse
-    @pictures = pictures.paginate(:page => params[:page], :per_page => 30)
+  private
+
+  def set_archive_instance_variables
     @archive = true
     @channel = '/pictures'
-
-    flash.now[:danger] = 'No content found...' if @pictures.count == 0
   end
 end

@@ -16,15 +16,19 @@ class BuzzfeedArticle < ActiveRecord::Base
           :title     => entry.title,
           :summary   => entry.summary,
           :source    => 'buzzfeed.com',
-          :thumbnail => find_or_create_thumbnail(entry.media_thumbnail_url.first),
+          :thumbnail => find_or_create_thumbnail(entry),
           :guid      => entry.id
         )
       end
     end
   end
 
-  def self.find_or_create_thumbnail(thumb)
-    default_image = "//s3-ak.buzzfed.com/static/images/global/buzzfeed-logo.png?v=201502271515"
-    thumb || default_image
+  def self.find_or_create_thumbnail(entry)
+    finder = ThumbnailSetter.new(entry: entry, default_image: default_image)
+    finder.find_or_create_thumbnail
+  end
+
+  def self.default_image
+    '//s3-ak.buzzfed.com/static/images/global/buzzfeed-logo.png?v=201502271515'
   end
 end

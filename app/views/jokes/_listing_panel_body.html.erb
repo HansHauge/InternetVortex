@@ -2,7 +2,9 @@
   <ul class="list-group">
     <% @jokes.each do |joke| %>
       <li class="list-group-item">
-        <%= link_to joke.title, joke_path(joke) %>  <span class='inline-source'>(<%= link_to joke.source, joke.guid %>)</span>
+
+        <%= render 'joke_index_row', joke: joke %>
+
       </li>
     <% end %>
   </ul>

@@ -1,5 +1,8 @@
-class ChiveArticle < ActiveRecord::Base
-  validates_presence_of :title, :summary, :source, :guid, :image
+class BreakVideo < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
+  validates_presence_of :title, :source, :guid
   validates_uniqueness_of :guid
 
   def self.update_from_feed(entries)
@@ -14,12 +17,10 @@ class ChiveArticle < ActiveRecord::Base
       unless exists? :guid => entry.id
         create(
           :title      => entry.title,
-          :summary    => entry.summary,
-          :source     => 'thechive.com',
-          :guid       => entry.url,
+          :source     => 'break.com',
           :thumbnail  => find_or_create_thumbnail(entry),
-          :categories => entry.categories,
-          :image      => entry.image
+          :summary    => entry.summary,
+          :guid       => entry.entry_id
         )
       end
     end
@@ -31,6 +32,6 @@ class ChiveArticle < ActiveRecord::Base
   end
 
   def self.default_image
-    '//cdn.shopify.com/s/files/1/0065/0022/products/theCHIVE-White_Square_Design_medium.jpg?v=1420647873'
+    '//media1.break.com/break/img/site/nav/brk-logo5.png'
   end
 end
