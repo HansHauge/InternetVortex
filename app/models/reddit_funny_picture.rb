@@ -51,6 +51,6 @@ class RedditFunnyPicture < ActiveRecord::Base
   end
 
   def self.default_image
-    '//c.thumbs.redditmedia.com/UNcO-h_QcS9PD-Gn.jpg'
+    '//www.redditstatic.com/about/assets/reddit-alien.png'
   end
 end
