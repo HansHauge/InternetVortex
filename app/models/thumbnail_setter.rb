@@ -1,23 +1,24 @@
 class ThumbnailSetter
-  attr_accessor :entry, :default_image
+  attr_accessor :entry, :default_image, :summary_or_content
 
   def initialize(params)
-    @entry         = params[:entry]
-    @default_image = params[:default_image]
+    @entry              = params[:entry]
+    @default_image      = params[:default_image]
+    @summary_or_content = params[:summary_or_content]
   end
 
   def find_or_create_thumbnail
     return entry.media_thumbnail_url.first if entry.try(:media_thumbnail_url)
     return entry.image if entry.try(:image)
-    return default_image unless entry.content
-    return youtube_image if entry.content.match(/youtube.com/)
+    return default_image unless summary_or_content
+    return youtube_image if summary_or_content.match(/youtube.com/)
 
     thumb_string = ''
 
-    if entry.content.match(/src='/)
-      thumb_string = entry.content.match(/src='/).post_match.match(/'/).pre_match
-    elsif entry.content.match(/src="/)
-      thumb_string = entry.content.match(/src="/).post_match.match(/"/).pre_match
+    if summary_or_content.match(/src='/)
+      thumb_string = summary_or_content.match(/src='/).post_match.match(/'/).pre_match
+    elsif summary_or_content.match(/src="/)
+      thumb_string = summary_or_content.match(/src="/).post_match.match(/"/).pre_match
     end
 
     if thumb_string.present?
@@ -25,7 +26,6 @@ class ThumbnailSetter
     else
       default_image
     end
-
   end
 
   private

@@ -27,7 +27,7 @@ class BreakVideo < ActiveRecord::Base
   end
 
   def self.find_or_create_thumbnail(entry)
-    finder = ThumbnailSetter.new(entry: entry, default_image: default_image)
+    finder = ThumbnailSetter.new(entry: entry, default_image: default_image, summary_or_content: entry.summary)
     finder.find_or_create_thumbnail
   end
 
