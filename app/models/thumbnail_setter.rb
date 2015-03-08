@@ -12,12 +12,20 @@ class ThumbnailSetter
     return default_image unless entry.content
     return youtube_image if entry.content.match(/youtube.com/)
 
+    thumb_string = ''
+
     if entry.content.match(/src='/)
       thumb_string = entry.content.match(/src='/).post_match.match(/'/).pre_match
+    elsif entry.content.match(/src="/)
+      thumb_string = entry.content.match(/src="/).post_match.match(/"/).pre_match
+    end
+
+    if thumb_string.present?
       thumb_string.include?('vine.co') ? vine_image : thumb_string
     else
       default_image
     end
+
   end
 
   private
