@@ -6,9 +6,8 @@
 
 <% if @jokes.count > 0 %>
   <div id='outer-content-wrapper'>
-    <div class='row' id='fixed-height-subnav'>
-      <%= will_paginate @jokes, class: 'digg_pagination' %>
-    </div>
+      <%= will_paginate @jokes, renderer: BootstrapPagination::Rails %>
+
     <div class="panel panel-info">
       <div class="panel-heading">
         <h3 class="panel-title">Popular jokes from <%= params[:date] %></h3>
@@ -16,7 +15,7 @@
       <%= render 'listing_panel_body' %>
     </div>
   </div>
-  <%= will_paginate @jokes, class: 'digg_pagination' %>
+  <%= will_paginate @jokes, renderer: BootstrapPagination::Rails %>
 <% else %>
   <div id='inner-content-wrapper'>
     <%= image_tag 'derp.jpg' %>
