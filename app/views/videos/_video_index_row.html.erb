@@ -1,10 +1,10 @@
-<div class='col-md-3'>
+<div class='col-md-1'>
   <div class='article-thumbnail'>
-    <%= link_to video.guid do %>
+    <%= link_to video_path(video) do %>
       <% if video.thumbnail.is_probably_a_picture? %>
-        <%= image_tag video.thumbnail %>
+        <%= image_tag video.thumbnail, class: 'img-responsive' %>
       <% else %>
-        <video autoplay loop muted preload width="260">
+        <video autoplay loop muted preload width="80">
           <source src="<%= video.thumbnail %>" type='video/webm'>
           <source src="<%= video.thumbnail %>" type='video/mp4'>
         </video>
@@ -12,7 +12,7 @@
     <% end %>
   </div>
 </div>
-<div class='col-md-9'>
-  <%= link_to video.title, video.guid %>  <span class='inline-source'>
+<div class='col-md-11'>
+  <%= link_to video.title, video_path(video) %>  <span class='inline-source'>
       (<%= link_to video.source, video.guid %>)</span>
 </div>

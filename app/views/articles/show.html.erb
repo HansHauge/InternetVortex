@@ -4,21 +4,14 @@
 %>
 
 <div id='outer-content-wrapper'>
-  <div class="panel panel-info">
+  <div class="panel panel-success">
     <div class="panel-heading">
       <h3 class="panel-title"><%= @article.title %></h3>
     </div>
     <div class="panel-body">
       <ul class="list-group">
         <li class="list-group-item">
-          <% if @article.actual_image.ends_with?('.gifv') %>
-            <video autoplay loop muted preload>
-              <source src="<%= gifv_sub_webm(@article.actual_image) %>" type='video/webm'>
-              <source src="<%= gifv_sub_mp4(@article.actual_image) %>" type='video/mp4'>
-            </video>
-          <% else %>
-            <%= image_tag @article.actual_image, class: 'img-responsive' %>
-          <% end %>
+          <%= @article.summary.html_safe %>
           <br>
           <span class='inline-source'>(<%= link_to @article.source, @article.guid %>)</span>
         </li>

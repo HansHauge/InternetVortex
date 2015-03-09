@@ -9,6 +9,10 @@ class Joke < ActiveRecord::Base
     add_entries(entries)
   end
 
+  def thumbnail
+    '//www.redditstatic.com/about/assets/reddit-alien.png'
+  end
+
   private
 
   def self.add_entries(entries)
