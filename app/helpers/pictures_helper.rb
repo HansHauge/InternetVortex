@@ -8,6 +8,6 @@ module PicturesHelper
   end
 
   def imgur_gallery?(str)
-    str.match(/imgur.com\/gallery/)
+    str.match(/imgur.com\/gallery/) || str.match(/imgur.com\/a\//)
   end
 end

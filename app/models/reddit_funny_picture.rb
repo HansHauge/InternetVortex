@@ -27,7 +27,7 @@ class RedditFunnyPicture < ActiveRecord::Base
   end
 
   def imgur_gallery?(string)
-    string.match(/imgur.com\/gallery/)
+    string.match(/imgur.com\/gallery/) || string.match(/imgur.com\/a\//)
   end
 
   def self.add_entries(entries)
