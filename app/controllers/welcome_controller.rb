@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
   def home
     time_range = (DateTime.current - 1.day)..DateTime.current
     unsorted_listings = gather_sources(time_range)
-    @listings = unsorted_listings.paginate(:page => params[:page], :per_page => 20)
+    @listings = unsorted_listings.paginate(:page => params[:page], :per_page => 30)
   end
 
   def about
@@ -21,7 +21,7 @@ class WelcomeController < ApplicationController
 
     time_range = date.at_beginning_of_day..date.at_end_of_day
     unsorted_listings = gather_sources(time_range)
-    @listings = unsorted_listings.paginate(:page => params[:page], :per_page => 20)
+    @listings = unsorted_listings.paginate(:page => params[:page], :per_page => 30)
 
     flash.now[:danger] = 'No content found...' if @listings.count == 0
   end
