@@ -5,16 +5,12 @@ class UpdateRssFeedsJob < ActiveJob::Base
                  :break_video_feed
 
   queue_as :default
-  TIME_TO_WAIT = 5.minutes
 
   def perform
     update_r_jokes
     update_memebase_articles
     update_r_funny_pictures
     update_break_videos
-
-    sleep TIME_TO_WAIT
-    self.class.perform_now
   end
 
   def update_r_jokes
@@ -58,6 +54,4 @@ class UpdateRssFeedsJob < ActiveJob::Base
       BreakVideo.update_from_feed(break_video_feed.entries)
     end
   end
-
-  def
 end
