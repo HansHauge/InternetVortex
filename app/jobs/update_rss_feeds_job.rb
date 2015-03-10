@@ -2,7 +2,8 @@ class UpdateRssFeedsJob < ActiveJob::Base
   attr_accessor  :r_jokes_feed,
                  :memebase_feed,
                  :r_funny_pictures_feed,
-                 :break_video_feed
+                 :break_video_feed,
+                 :xkcd_comic_feed
 
   queue_as :default
 
@@ -11,6 +12,7 @@ class UpdateRssFeedsJob < ActiveJob::Base
     update_memebase_articles
     update_r_funny_pictures
     update_break_videos
+    update_xkcd_comics
   end
 
   def update_r_jokes
@@ -52,6 +54,16 @@ class UpdateRssFeedsJob < ActiveJob::Base
     else
       break_video_feed = Feedjira::Feed.fetch_and_parse('http://feeds.feedburner.com/BreakVideos')
       BreakVideo.update_from_feed(break_video_feed.entries)
+    end
+  end
+
+  def update_xkcd_comics
+    if xkcd_comic_feed
+      xkcd_comic_feed = Feedjira::Feed.update(xkcd_comic_feed)
+      XkcdComic.update_from_feed(xkcd_comic_feed.new_entries) if xkcd_comic_feed.updated?
+    else
+      xkcd_comic_feed = Feedjira::Feed.fetch_and_parse('http://xkcd.com/rss.xml')
+      XkcdComic.update_from_feed(xkcd_comic_feed.entries)
     end
   end
 end

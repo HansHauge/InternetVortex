@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   # get 'videos' => 'videos#index'
   get 'videos/:id' => 'videos#show', as: 'video'
 
+  get 'comics/:id' => 'comics#show', as: 'comic'
+
   get 'about' => 'welcome#about'
 
   # archive

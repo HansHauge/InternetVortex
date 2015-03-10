@@ -1,0 +1,11 @@
+<div class='col-md-1'>
+  <div class='article-thumbnail'>
+    <%= link_to comic_path(comic, source: comic.source) do %>
+      <%= image_tag comic.thumbnail, class: 'img-responsive' %>
+    <% end %>
+  </div>
+</div>
+<div class='col-md-11'>
+  <%= link_to comic.title, comic_path(comic, source: comic.source) %>
+  <span class='inline-source'> (<%= link_to comic.source, comic.guid %>)</span>
+</div>
