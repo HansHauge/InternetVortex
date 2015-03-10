@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308204635) do
+ActiveRecord::Schema.define(version: 20150310010359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,5 +68,18 @@ ActiveRecord::Schema.define(version: 20150308204635) do
   end
 
   add_index "reddit_funny_pictures", ["slug"], name: "index_reddit_funny_pictures_on_slug", using: :btree
+
+  create_table "xkcd_comics", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.string   "thumbnail"
+    t.string   "guid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "slug"
+    t.string   "source"
+  end
+
+  add_index "xkcd_comics", ["slug"], name: "index_xkcd_comics_on_slug", using: :btree
 
 end

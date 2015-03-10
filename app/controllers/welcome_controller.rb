@@ -39,8 +39,9 @@ class WelcomeController < ApplicationController
     r_funny_pictures = RedditFunnyPicture.where(created_at: time_range)
     jokes = Joke.where(created_at: time_range)
     videos = BreakVideo.where(created_at: time_range)
+    xkcd_comics = XkcdComic.where(created_at: time_range)
 
-    [memebase_articles, r_funny_pictures, jokes, videos].each do |source|
+    [memebase_articles, r_funny_pictures, jokes, videos, xkcd_comics].each do |source|
       unsorted_listings.concat(source)
     end
 

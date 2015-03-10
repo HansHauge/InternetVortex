@@ -1,0 +1,23 @@
+<%
+  meta title: "Comic - #{@comic.title}",
+       keywords: @comic.content.remove_html_tags.to_keywords
+%>
+
+<div id='outer-content-wrapper'>
+  <div class="panel panel-warning">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= @comic.title %></h3>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class='img-responsive'>
+            <%= @comic.content.html_safe %>
+          </div>
+          <br>
+          <span class='inline-source'>(<%= link_to @comic.source, @comic.guid %>)</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -9,6 +9,8 @@
             <%= render 'videos/video_index_row', video: listing %>
           <% elsif listing.class == RedditFunnyPicture %>
             <%= render 'pictures/picture_index_row', picture: listing %>
+          <% elsif listing.class == XkcdComic %>
+            <%= render 'comics/comic_index_row', comic: listing %>
           <% else %>
             <%= render 'articles/article_index_row', article: listing %>
           <% end %>
