@@ -36,6 +36,7 @@ gem "remotipart", "~> 1.0"
 gem 'htmlentities'
 gem 'will_paginate-bootstrap'
 gem 'whenever', :require => false
+gem 'sitemap_generator'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

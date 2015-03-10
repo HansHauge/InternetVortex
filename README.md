@@ -18,3 +18,10 @@ Also we need to turn on the redis server:
 
 `redis-server`
 
+To refresh the sitemap (needs to be added to cron):
+
+`rake sitemap:refresh`
+
+or:
+
+`rake sitemap:refresh:no_ping` (don't ping search engines)

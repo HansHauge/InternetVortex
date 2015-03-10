@@ -23,3 +23,7 @@ set :output, "/Users/hhauge/dev/InternetVortex/log/cron_log.log"
 every 5.minutes do
   runner "UpdateRssFeedsJob.perform_now"
 end
+
+every 1.days do
+  rake "sitemap:refresh:no_ping"
+end
