@@ -13,16 +13,21 @@ class RedditFunnyPicture < ActiveRecord::Base
     add_entries(entries)
   end
 
-  def self.actual_image(summary)
-    image_url = summary.match(/">\[link\]/).pre_match.match(/"/).post_match.match(/.*(href=")/).post_match
-    image_url_with_extension = image_url.is_probably_a_picture? ? image_url : image_url + '.png'
-    image_url_with_extension.match(/imgur.com\/gallery/) ? image_url_with_extension.gsub('imgur.com/gallery', 'i.imgur.com') : image_url_with_extension
-  end
-
   def actual_image
     image_url = content.match(/">\[link\]/).pre_match.match(/"/).post_match.match(/.*(href=")/).post_match
-    image_url_with_extension = image_url.is_probably_a_picture? ? image_url : image_url + '.png'
-    image_url_with_extension.match(/imgur.com\/gallery/) ? image_url_with_extension.gsub('imgur.com/gallery', 'i.imgur.com') : image_url_with_extension
+    if from_imgur?(image_url) && !imgur_gallery?(image_url) && !image_url.is_probably_a_picture?
+      image_url + '.png'
+    else
+      image_url
+    end
+  end
+
+  def from_imgur?(string)
+    string.match(/imgur.com/)
+  end
+
+  def imgur_gallery?(string)
+    string.match(/imgur.com\/gallery/) || string.match(/imgur.com\/a\//)
   end
 
   def self.add_entries(entries)
@@ -33,18 +38,19 @@ class RedditFunnyPicture < ActiveRecord::Base
           :title     => entry.title,
           :content   => entry.summary,
           :source    => 'reddit.com/r/funny',
-          :thumbnail => find_or_create_thumbnail(entry, entry.summary),
+          :thumbnail => find_or_create_thumbnail(entry),
           :guid      => entry.id
         )
       end
     end
   end
 
-  def self.find_or_create_thumbnail(entry, summary)
-    if entry.try(:media_thumbnail_url)
-      entry.media_thumbnail_url.first
-    else
-      actual_image(summary)
-    end
+  def self.find_or_create_thumbnail(entry)
+    finder = ThumbnailSetter.new(entry: entry, default_image: default_image, summary_or_content: entry.summary)
+    finder.find_or_create_thumbnail
+  end
+
+  def self.default_image
+    '//www.redditstatic.com/about/assets/reddit-alien.png'
   end
 end

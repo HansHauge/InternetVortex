@@ -35,15 +35,14 @@ class WelcomeController < ApplicationController
 
   def gather_sources(time_range)
     unsorted_listings = []
-    chive_articles = ChiveArticle.where(created_at: time_range)
-    buzzfeed_articles = BuzzfeedArticle.where(created_at: time_range)
     memebase_articles = MemebaseArticle.where(created_at: time_range)
-    cracked_articles = CrackedArticle.where(created_at: time_range)
+    failblog_articles = FailblogArticle.where(created_at: time_range)
     r_funny_pictures = RedditFunnyPicture.where(created_at: time_range)
     jokes = Joke.where(created_at: time_range)
     videos = BreakVideo.where(created_at: time_range)
+    xkcd_comics = XkcdComic.where(created_at: time_range)
 
-    [chive_articles, buzzfeed_articles, memebase_articles, r_funny_pictures, jokes, cracked_articles, videos].each do |source|
+    [memebase_articles, failblog_articles, r_funny_pictures, jokes, videos, xkcd_comics].each do |source|
       unsorted_listings.concat(source)
     end
 

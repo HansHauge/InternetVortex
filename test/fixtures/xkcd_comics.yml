@@ -2,14 +2,12 @@
 
 one:
   title: MyString
-  summary: MyText
-  source: 
-  guid: MyString
+  content: MyText
   thumbnail: MyString
+  guid: MyString
 
 two:
   title: MyString
-  summary: MyText
-  source: 
-  guid: MyString
+  content: MyText
   thumbnail: MyString
+  guid: MyString

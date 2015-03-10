@@ -1,17 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
   guid: MyString
-  source: MyString
-  summary: MyText
   categories: MyString
-  image: MyString
+  title: MyString
+  summary: MyText
+  thumbnail: MyString
 
 two:
-  title: MyString
   guid: MyString
-  source: MyString
-  summary: MyText
   categories: MyString
-  image: MyString
+  title: MyString
+  summary: MyText
+  thumbnail: MyString

@@ -1,23 +1,26 @@
 Rails.application.routes.draw do
-  get 'pictures' => 'pictures#index'
+  # get 'pictures' => 'pictures#index'
   get 'pictures/show/:id' => 'pictures#show', as: 'picture'
 
-  get 'jokes' => 'jokes#index'
+  # get 'jokes' => 'jokes#index'
   get 'jokes/:id' => 'jokes#show', as: 'joke'
 
-  get 'articles' => 'articles#index'
+  # get 'articles' => 'articles#index'
+  get 'articles/:id' => 'articles#show', as: 'article'
 
-  get 'videos' => 'videos#index'
+  # get 'videos' => 'videos#index'
   get 'videos/:id' => 'videos#show', as: 'video'
+
+  get 'comics/:id' => 'comics#show', as: 'comic'
 
   get 'about' => 'welcome#about'
 
   # archive
   get 'archive/:date' => 'welcome#archive', as: 'front_page_archive'
-  get 'archive/articles/:date' => 'articles#archive', as: 'articles_archive'
-  get 'archive/jokes/:date' => 'jokes#archive', as: 'jokes_archive'
-  get 'archive/pictures/:date' => 'pictures#archive', as: 'pictures_archive'
-  get 'archive/videos/:date' => 'videos#archive', as: 'videos_archive'
+  # get 'archive/articles/:date' => 'articles#archive', as: 'articles_archive'
+  # get 'archive/jokes/:date' => 'jokes#archive', as: 'jokes_archive'
+  # get 'archive/pictures/:date' => 'pictures#archive', as: 'pictures_archive'
+  # get 'archive/videos/:date' => 'videos#archive', as: 'videos_archive'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

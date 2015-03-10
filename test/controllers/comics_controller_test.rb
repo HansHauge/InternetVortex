@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CrackedArticleTest < ActiveSupport::TestCase
+class ComicsControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end

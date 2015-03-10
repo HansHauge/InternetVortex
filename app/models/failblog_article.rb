@@ -1,4 +1,7 @@
-class CrackedArticle < ActiveRecord::Base
+class FailblogArticle < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   validates_presence_of :title, :source, :guid
   validates_uniqueness_of :guid
 
@@ -14,7 +17,9 @@ class CrackedArticle < ActiveRecord::Base
       unless exists? :guid => entry.id
         create(
           :title      => entry.title,
-          :source     => 'cracked.com',
+          :categories => entry.categories,
+          :summary    => entry.content,
+          :source     => 'failblog.cheezburger.com',
           :thumbnail  => find_or_create_thumbnail(entry),
           :guid       => entry.entry_id
         )
@@ -23,11 +28,11 @@ class CrackedArticle < ActiveRecord::Base
   end
 
   def self.find_or_create_thumbnail(entry)
-    finder = ThumbnailSetter.new(entry: entry, default_image: default_image)
+    finder = ThumbnailSetter.new(entry: entry, default_image: default_image, summary_or_content: entry.content)
     finder.find_or_create_thumbnail
   end
 
   def self.default_image
-    '//i.crackedcdn.com/ui/shared/images/global/layout/logo-yellow.png'
+    '//s.chzbgr.com/blob/7/LargeFAILBLOGheader12.png'
   end
 end

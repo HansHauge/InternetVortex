@@ -1,28 +1,20 @@
 class UpdateRssFeedsJob < ActiveJob::Base
   attr_accessor  :r_jokes_feed,
-                 :chive_article_feed,
-                 :buzzfeed_lol_article_feed,
-                 :buzzfeed_fail_article_feed,
                  :memebase_feed,
                  :r_funny_pictures_feed,
-                 :cracked_article_feed,
-                 :break_video_feed
+                 :break_video_feed,
+                 :xkcd_comic_feed,
+                 :failblog_feed
 
   queue_as :default
-  TIME_TO_WAIT = 5.minutes
 
   def perform
     update_r_jokes
-    update_chive_articles
-    update_buzzfeed_lol_articles
-    update_buzzfeed_fail_articles
     update_memebase_articles
     update_r_funny_pictures
-    update_cracked_articles
     update_break_videos
-
-    sleep TIME_TO_WAIT
-    self.class.perform_now
+    update_xkcd_comics
+    update_failblog_articles
   end
 
   def update_r_jokes
@@ -32,39 +24,6 @@ class UpdateRssFeedsJob < ActiveJob::Base
     else
       r_jokes_feed = Feedjira::Feed.fetch_and_parse('http://www.reddit.com/r/jokes/.rss')
       Joke.update_from_feed(r_jokes_feed.entries)
-    end
-  end
-
-  def update_chive_articles
-    if chive_article_feed
-      chive_article_feed = Feedjira::Feed.update(chive_article_feed)
-      ChiveArticle.update_from_feed(chive_article_feed.new_entries) if chive_article_feed.updated?
-    else
-      Feedjira::Feed.add_common_feed_entry_elements("media", :value => :url,    :as => :media)
-      chive_article_feed = Feedjira::Feed.fetch_and_parse('http://thechive.com/category/funny_hilarious_photos_pictures/feed/')
-      ChiveArticle.update_from_feed(chive_article_feed.entries)
-    end
-  end
-
-  def update_buzzfeed_lol_articles
-    if buzzfeed_lol_article_feed
-      buzzfeed_lol_article_feed = Feedjira::Feed.update(buzzfeed_lol_article_feed)
-      BuzzfeedArticle.update_from_feed(buzzfeed_lol_article_feed.new_entries) if buzzfeed_lol_article_feed.updated?
-    else
-      Feedjira::Feed.add_common_feed_entry_elements("media", :value => :url,    :as => :media)
-      buzzfeed_lol_article_feed = Feedjira::Feed.fetch_and_parse('http://www.buzzfeed.com/lol.xml')
-      BuzzfeedArticle.update_from_feed(buzzfeed_lol_article_feed.entries)
-    end
-  end
-
-  def update_buzzfeed_fail_articles
-    if buzzfeed_fail_article_feed
-      buzzfeed_fail_article_feed = Feedjira::Feed.update(buzzfeed_fail_article_feed)
-      BuzzfeedArticle.update_from_feed(buzzfeed_fail_article_feed.new_entries) if buzzfeed_fail_article_feed.updated?
-    else
-      Feedjira::Feed.add_common_feed_entry_elements("media", :value => :url,    :as => :media)
-      buzzfeed_fail_article_feed = Feedjira::Feed.fetch_and_parse('http://www.buzzfeed.com/fail.xml')
-      BuzzfeedArticle.update_from_feed(buzzfeed_fail_article_feed.entries)
     end
   end
 
@@ -79,6 +38,17 @@ class UpdateRssFeedsJob < ActiveJob::Base
     end
   end
 
+  def update_failblog_articles
+    if failblog_feed
+      failblog_feed = Feedjira::Feed.update(failblog_feed)
+      FailblogArticle.update_from_feed(failblog_feed.new_entries) if failblog_feed.updated?
+    else
+      Feedjira::Feed.add_common_feed_entry_elements("media", :value => :url,    :as => :media)
+      failblog_feed = Feedjira::Feed.fetch_and_parse('http://feeds.feedburner.com/failblog')
+      FailblogArticle.update_from_feed(failblog_feed.entries)
+    end
+  end
+
   def update_r_funny_pictures
     if r_funny_pictures_feed
       r_funny_pictures_feed = Feedjira::Feed.update(r_funny_pictures_feed)
@@ -90,17 +60,6 @@ class UpdateRssFeedsJob < ActiveJob::Base
     end
   end
 
-  def update_cracked_articles
-    if cracked_article_feed
-      cracked_article_feed = Feedjira::Feed.update(cracked_article_feed)
-      CrackedArticle.update_from_feed(cracked_article_feed.new_entries) if cracked_article_feed.updated?
-    else
-      Feedjira::Feed.add_common_feed_entry_elements("media", :value => :url,    :as => :media)
-      cracked_article_feed = Feedjira::Feed.fetch_and_parse('http://feeds.feedburner.com/CrackedRSS')
-      CrackedArticle.update_from_feed(cracked_article_feed.entries)
-    end
-  end
-
   def update_break_videos
     if break_video_feed
       break_video_feed = Feedjira::Feed.update(break_video_feed)
@@ -108,6 +67,16 @@ class UpdateRssFeedsJob < ActiveJob::Base
     else
       break_video_feed = Feedjira::Feed.fetch_and_parse('http://feeds.feedburner.com/BreakVideos')
       BreakVideo.update_from_feed(break_video_feed.entries)
+    end
+  end
+
+  def update_xkcd_comics
+    if xkcd_comic_feed
+      xkcd_comic_feed = Feedjira::Feed.update(xkcd_comic_feed)
+      XkcdComic.update_from_feed(xkcd_comic_feed.new_entries) if xkcd_comic_feed.updated?
+    else
+      xkcd_comic_feed = Feedjira::Feed.fetch_and_parse('http://xkcd.com/rss.xml')
+      XkcdComic.update_from_feed(xkcd_comic_feed.entries)
     end
   end
 end

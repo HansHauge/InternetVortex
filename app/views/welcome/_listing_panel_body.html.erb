@@ -1,16 +1,16 @@
 <div class="panel-body">
   <ul class="list-group">
     <% @listings.each do |listing| %>
-      <li class="list-group-item slim-list-group-item">
+      <li class="list-group-item">
         <div class='row'>
           <% if listing.class == Joke %>
-            <div class='col-md-12'>
-              <%= render 'jokes/joke_index_row', joke: listing %>
-            </div>
+            <%= render 'jokes/joke_index_row', joke: listing %>
           <% elsif listing.class == BreakVideo %>
             <%= render 'videos/video_index_row', video: listing %>
           <% elsif listing.class == RedditFunnyPicture %>
             <%= render 'pictures/picture_index_row', picture: listing %>
+          <% elsif listing.class == XkcdComic %>
+            <%= render 'comics/comic_index_row', comic: listing %>
           <% else %>
             <%= render 'articles/article_index_row', article: listing %>
           <% end %>

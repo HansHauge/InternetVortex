@@ -1,4 +1,4 @@
-class ThumbnailSetter
+class VideoParser
   attr_accessor :entry, :default_image, :summary_or_content
 
   def initialize(params)
@@ -7,22 +7,21 @@ class ThumbnailSetter
     @summary_or_content = params[:summary_or_content]
   end
 
-  def find_or_create_thumbnail
-    return entry.media_thumbnail_url.first if entry.try(:media_thumbnail_url)
+  def find_or_create_video
     return entry.image if entry.try(:image)
     return default_image unless summary_or_content
     return youtube_image if summary_or_content.match(/youtube.com/)
 
-    thumb_string = ''
+    video_string = ''
 
     if summary_or_content.match(/src='/)
-      thumb_string = summary_or_content.match(/src='/).post_match.match(/'/).pre_match
+      video_string = summary_or_content.match(/src='/).post_match.match(/'/).pre_match
     elsif summary_or_content.match(/src="/)
-      thumb_string = summary_or_content.match(/src="/).post_match.match(/"/).pre_match
+      video_string = summary_or_content.match(/src="/).post_match.match(/"/).pre_match
     end
 
-    if thumb_string.present?
-      thumb_string.include?('vine.co') ? vine_image : thumb_string
+    if video_string.present?
+      video_string.include?('vine.co') ? vine_image : video_string
     else
       default_image
     end
