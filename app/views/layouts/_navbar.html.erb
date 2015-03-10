@@ -13,6 +13,7 @@
       <ul class="nav navbar-nav">
         <li><%= link_to "Archive", front_page_archive_path(DateTime.now.yesterday.strftime('%B-%d-%Y')) %></li>
         <li><a href="/about">About</a></li>
+        <li><%= mail_to 'internetvortex2015@gmail.com', 'Contact' %></li>
         <% if @archive %>
           <li>
             <%= render 'layouts/date_picker', { channel: @channel, css: "" } %>
