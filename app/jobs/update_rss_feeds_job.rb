@@ -3,7 +3,8 @@ class UpdateRssFeedsJob < ActiveJob::Base
                  :memebase_feed,
                  :r_funny_pictures_feed,
                  :break_video_feed,
-                 :xkcd_comic_feed
+                 :xkcd_comic_feed,
+                 :failblog_feed
 
   queue_as :default
 
@@ -13,6 +14,7 @@ class UpdateRssFeedsJob < ActiveJob::Base
     update_r_funny_pictures
     update_break_videos
     update_xkcd_comics
+    update_failblog_articles
   end
 
   def update_r_jokes
@@ -33,6 +35,17 @@ class UpdateRssFeedsJob < ActiveJob::Base
       Feedjira::Feed.add_common_feed_entry_elements("media", :value => :url,    :as => :media)
       memebase_feed = Feedjira::Feed.fetch_and_parse('http://feeds.feedblitz.com/Memebase&x=1')
       MemebaseArticle.update_from_feed(memebase_feed.entries)
+    end
+  end
+
+  def update_failblog_articles
+    if failblog_feed
+      failblog_feed = Feedjira::Feed.update(failblog_feed)
+      FailblogArticle.update_from_feed(failblog_feed.new_entries) if failblog_feed.updated?
+    else
+      Feedjira::Feed.add_common_feed_entry_elements("media", :value => :url,    :as => :media)
+      failblog_feed = Feedjira::Feed.fetch_and_parse('http://feeds.feedburner.com/failblog')
+      FailblogArticle.update_from_feed(failblog_feed.entries)
     end
   end
 

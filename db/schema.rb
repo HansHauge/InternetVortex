@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150310010359) do
+ActiveRecord::Schema.define(version: 20150310023842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,20 @@ ActiveRecord::Schema.define(version: 20150310010359) do
   end
 
   add_index "break_videos", ["slug"], name: "index_break_videos_on_slug", using: :btree
+
+  create_table "failblog_articles", force: :cascade do |t|
+    t.string   "guid"
+    t.string   "categories"
+    t.string   "title"
+    t.text     "summary"
+    t.string   "thumbnail"
+    t.string   "source"
+    t.string   "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "failblog_articles", ["slug"], name: "index_failblog_articles_on_slug", using: :btree
 
   create_table "jokes", force: :cascade do |t|
     t.text     "title"
