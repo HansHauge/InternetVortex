@@ -1,5 +1,5 @@
 <%
-  meta title: "Joke",
+  meta title: @joke.title,
        description: @joke.content.to_description,
        keywords: @joke.title.to_keywords
 %>
@@ -15,6 +15,7 @@
           <%= @joke.content.html_safe %><br>
           <span class='inline-source'>(<%= link_to @joke.source, @joke.guid %>)</span>
         </li>
+        <%= render 'layouts/share_this' %>
       </ul>
     </div>
   </div>

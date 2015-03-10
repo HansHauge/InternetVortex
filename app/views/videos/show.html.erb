@@ -1,5 +1,5 @@
 <%
-  meta title: "Video",
+  meta title: @video.title,
        description: @video.summary.to_description,
        keywords: @video.title.to_keywords
 %>
@@ -21,6 +21,7 @@
           <br>
           <span class='inline-source'>(<%= link_to @video.source, @video.guid %>)</span>
         </li>
+        <%= render 'layouts/share_this' %>
       </ul>
     </div>
   </div>

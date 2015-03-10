@@ -1,5 +1,5 @@
 <%
-  meta title: "Funny Picture",
+  meta title: @picture.title,
        keywords: @picture.title.to_keywords
 %>
 
@@ -22,6 +22,7 @@
           <br>
           <span class='inline-source'>(<%= link_to @picture.source, @picture.guid %>)</span>
         </li>
+        <%= render 'layouts/share_this' %>
       </ul>
     </div>
   </div>

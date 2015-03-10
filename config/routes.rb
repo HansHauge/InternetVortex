@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # get 'pictures' => 'pictures#index'
-  get 'pictures/show/:id' => 'pictures#show', as: 'picture'
+  get 'pictures/:id' => 'pictures#show', as: 'picture'
 
   # get 'jokes' => 'jokes#index'
   get 'jokes/:id' => 'jokes#show', as: 'joke'
