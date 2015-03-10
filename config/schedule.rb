@@ -5,8 +5,8 @@
 
 # Example:
 #
-set :environment, "development"
-set :output, "/Users/hhauge/dev/InternetVortex/log/cron_log.log"
+# set :environment, "development"
+# set :output, "/Users/hhauge/dev/InternetVortex/log/cron_log.log"
 #
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
@@ -25,5 +25,5 @@ every 5.minutes do
 end
 
 every 1.days do
-  rake "sitemap:refresh:no_ping"
+  rake "sitemap:refresh"
 end
