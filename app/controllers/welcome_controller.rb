@@ -2,7 +2,7 @@ class WelcomeController < ApplicationController
   before_action :set_archive_instance_variables, only: [:archive]
 
   def home
-    time_range = (DateTime.current - 1.day)..DateTime.current
+    time_range = (DateTime.now - 1.day)..DateTime.now
     unsorted_listings = gather_sources(time_range)
     @listings = unsorted_listings.paginate(:page => params[:page], :per_page => 30)
   end
