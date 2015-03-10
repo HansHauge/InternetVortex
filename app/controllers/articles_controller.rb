@@ -9,6 +9,7 @@ class ArticlesController < ApplicationController
 
   def determine_source
     source = params[:source]
+    @source = FailblogArticle if source.eql?('failblog.cheezburger.com')
     @source = MemebaseArticle if source.eql?('memebase.cheezburger.com')
   end
 end

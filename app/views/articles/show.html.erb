@@ -1,6 +1,7 @@
 <%
-  meta title: "Funny Article",
-       keywords: @article.title.to_keywords
+  meta title: @article.title,
+       description: @article.summary.to_description,
+       keywords: @article.categories
 %>
 
 <div id='outer-content-wrapper'>
