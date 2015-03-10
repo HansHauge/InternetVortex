@@ -5,10 +5,19 @@
       metamagic site: "InternetVortex: The High Quality Humor Engine", title: [:title, :site], separator: " — "
     %>
 
+    <%
+      meta og: { image: "https://cdn2.iconfinder.com/data/icons/freecns-cumulus/32/519909-102_Tornado-128.png" }
+    %>
+
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
     <%= metamagic %>
+
+    <script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "33c7f351-79e9-477e-bcf3-ce71da003803", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+
   </head>
   <body>
     <% if false %>
@@ -52,6 +61,7 @@
         </div>
       </div>
       <div class='row'>
+
         <% if false %>
         <!-- Just turning off the ads for now -->
           <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
