@@ -12,7 +12,9 @@
     <div class="panel-body">
       <ul class="list-group">
         <li class="list-group-item">
-          <%= @article.summary.html_safe %>
+          <div class="embed-responsive embed-responsive-16by9">
+            <%= @article.summary.html_safe %>
+          </div>
           <br>
           <span class='inline-source'>(<%= link_to @article.source, @article.guid %>)</span>
         </li>
