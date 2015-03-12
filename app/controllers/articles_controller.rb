@@ -8,8 +8,19 @@ class ArticlesController < ApplicationController
   private
 
   def determine_source
-    source = params[:source]
-    @source = FailblogArticle if source.eql?('failblog.cheezburger.com')
-    @source = MemebaseArticle if source.eql?('memebase.cheezburger.com')
+    if source = params[:source]
+      @source = FailblogArticle if source.eql?('failblog.cheezburger.com')
+      @source = MemebaseArticle if source.eql?('memebase.cheezburger.com')
+    else
+      guess_at_the_source
+    end
+  end
+
+  def guess_at_the_source
+    if MemebaseArticle.where(slug: params[:id]).present?
+      @source = MemebaseArticle
+    else
+      @source = FailblogArticle
+    end
   end
 end
