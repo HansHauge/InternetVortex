@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
   before_action :set_archive_instance_variables, only: [:archive]
+  before_action :set_recent_days, only: [:archive, :home]
 
   def home
     time_range = (DateTime.now - 1.day)..DateTime.now
@@ -27,6 +28,13 @@ class WelcomeController < ApplicationController
   end
 
   private
+
+  def set_recent_days
+    @recent_days = []
+    Date.current.downto(Date.current - 5.days).each do |date|
+      @recent_days << date.strftime('%B-%d-%Y')
+    end
+  end
 
   def set_archive_instance_variables
     @archive = true

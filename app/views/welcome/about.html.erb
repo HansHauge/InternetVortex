@@ -1,68 +1,64 @@
-<div id='outer-content-wrapper'>
+<h3>What is this site anyway?</h3>
+<p>
+  Every day funny content is being generated all over the web. You could visit all those sites but...
+</p>
 
-  <h3>What is this site anyway?</h3>
-  <p>
-    Every day funny content is being generated all over the web. You could visit all those sites but...
-  </p>
+<p>
+  <div class='img-responsive'>
+    <%= image_tag 'http://s5.postimg.org/5emxmrmcn/time_for_that.jpg' %>
+  </div>
+</p>
 
-  <p>
-    <div class='img-responsive'>
-      <%= image_tag 'http://s5.postimg.org/5emxmrmcn/time_for_that.jpg' %>
-    </div>
-  </p>
+<p>So Internet Vortex does the hard work for you by collecting the content and bringing it all together.</p>
 
-  <p>So Internet Vortex does the hard work for you by collecting the content and bringing it all together.</p>
+<h3>What is the archive and how do I get there?</h3>
 
-  <h3>What is the archive and how do I get there?</h3>
+<p>
+  Have you ever noticed that it's a huge pain to see stuff in the past? I mean you can click the little links<br>
+  forever or try to do an advanced search, but most the time stuff gets buried if it's more than a day old. <br>
+  Well, we think THAT SUCKS!
+</p>
 
-  <p>
-    Have you ever noticed that it's a huge pain to see stuff in the past? I mean you can click the little links<br>
-    forever or try to do an advanced search, but most the time stuff gets buried if it's more than a day old. <br>
-    Well, we think THAT SUCKS!
-  </p>
+<p>
+  <div class='img-responsive'>
+    <%= image_tag 'http://s5.postimg.org/km2x74e7b/Farley_Foley.jpg' %>
+  </div>
+</p>
 
-  <p>
-    <div class='img-responsive'>
-      <%= image_tag 'http://s5.postimg.org/km2x74e7b/Farley_Foley.jpg' %>
-    </div>
-  </p>
+<p>
+  So we built the <%= link_to 'archive', front_page_archive_path(DateTime.now.yesterday.strftime('%B-%d-%Y'))%>, which is a feature that allows you to view content from any day where we have data.<br>
+  If you click the archive link in the navbar you will see a date selector magically appear. Just pick a date and you're there! <br>
+  This site was launched in March of 2015, so fair warning... you won't find any content before that time.
+</p>
 
-  <p>
-    So we built the <%= link_to 'archive', front_page_archive_path(DateTime.now.yesterday.strftime('%B-%d-%Y'))%>, which is a feature that allows you to view content from any day where we have data.<br>
-    If you click the archive link in the navbar you will see a date selector magically appear. Just pick a date and you're there! <br>
-    This site was launched in March of 2015, so fair warning... you won't find any content before that time.
-  </p>
+<h3>What sites does InternetVortex.com pull content from?</h3>
+<p>
+  Currently we are pull in content from:
+  <ul>
+    <li>Reddit/r/jokes</li>
+    <li>Failblog</li>
+    <li>Break</li>
+    <li>Memebase</li>
+    <li>Reddit/r/funny</li>
+    <li>Xkcd</li>
+  </ul>
 
-  <h3>What sites does InternetVortex.com pull content from?</h3>
-  <p>
-    Currently we are pull in content from:
-    <ul>
-      <li>Reddit/r/jokes</li>
-      <li>Failblog</li>
-      <li>Break</li>
-      <li>Memebase</li>
-      <li>Reddit/r/funny</li>
-      <li>Xkcd</li>
-    </ul>
+  But, we're always looking for more content providers.
+</p>
 
-    But, we're always looking for more content providers.
-  </p>
+<h3>How can I get my site added to this list?</h3>
 
-  <h3>How can I get my site added to this list?</h3>
+<p>
+  If you want your site to be added, shoot us an email and we will review the content.<br>
+  We're looking for fresh original content that will make people laugh. <br>
+</p>
 
-  <p>
-    If you want your site to be added, shoot us an email and we will review the content.<br>
-    We're looking for fresh original content that will make people laugh. <br>
-  </p>
+The rules are:
+<ol>
+  <li>Content must be provided via rss</li>
+  <li>Full content in the feed</li>
+  <li>Feed must be updated frequently</li>
+  <li>It's gotta be funny...</li>
+</ol>
 
-  The rules are:
-  <ol>
-    <li>Content must be provided via rss</li>
-    <li>Full content in the feed</li>
-    <li>Feed must be updated frequently</li>
-    <li>It's gotta be funny...</li>
-  </ol>
-
-  <p>If you have any questions feel free to <%= mail_to 'internetvortex2015@gmail.com', 'shoot us an email' %>.</p>
-
-</div>
+<p>If you have any questions feel free to <%= mail_to 'internetvortex2015@gmail.com', 'shoot us an email' %>.</p>
