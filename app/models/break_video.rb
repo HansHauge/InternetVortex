@@ -14,7 +14,7 @@ class BreakVideo < ActiveRecord::Base
   def self.add_entries(entries)
     return unless entries.present?
     entries.each do |entry|
-      unless exists? :guid => entry.id
+      unless (exists? :guid => entry.id || find_or_create_video(entry).eql?(default_image))
         create(
           :title      => entry.title,
           :source     => 'break.com',
