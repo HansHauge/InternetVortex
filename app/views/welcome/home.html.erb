@@ -4,15 +4,20 @@
        keywords: ['Jokes', 'Funny Articles', 'Trending Humor', 'Funny Pictures']
 %>
 
-<div id='outer-content-wrapper'>
-  <%= will_paginate @listings, renderer: BootstrapPagination::Rails %><br>
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h3 class="panel-title">Newest Content from All Sources</h3>
+<div class='row'>
+  <%= will_paginate @listings, renderer: BootstrapPagination::Rails %>
+</div>
+<div class='row'>
+  <div class="col-md-8">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Newest Content from All Sources</h3>
+      </div>
+      <%= render 'listing_panel_body' %>
     </div>
-
-    <%= render 'listing_panel_body' %>
-
   </div>
+  <%= render 'layouts/recent_links' %>
+</div>
+<div class='row'>
   <%= will_paginate @listings, renderer: BootstrapPagination::Rails %>
 </div>

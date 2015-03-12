@@ -56,27 +56,13 @@
 
     <%= render 'layouts/navbar' %>
     <div class='container-fluid'>
-      <div class="row">
-        <div class="col-md-8">
-          <div class="container">
+      <div id='outer-content-wrapper'>
+        <div class="row">
 
-            <%= yield %>
+          <%= yield %>
 
-          </div>
         </div>
-        <div class="col-md-4">
-          <div class='profit-column'>
-            <% if false %>
-              <!-- Just turning off the ads for now -->
-              <%= render 'layouts/right_ad_column' %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <div class='row'>
-
-        <% if false %>
-        <!-- Just turning off the ads for now -->
+        <div class='row'>
           <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
           <!-- footer-banner -->
           <ins class="adsbygoogle"
@@ -86,7 +72,7 @@
           <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
           </script>
-        <% end %>
+        </div>
       </div>
     </div>
   </body>

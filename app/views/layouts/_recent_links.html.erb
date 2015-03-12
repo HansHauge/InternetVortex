@@ -1,28 +1,19 @@
-<%
-  meta title: "Comic - #{@comic.title}",
-       keywords: @comic.content.remove_html_tags.to_keywords
-%>
-
-<div class="col-md-8">
-  <div class="panel panel-warning">
+<div class="col-md-2">
+  <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= @comic.title %></h3>
+      <h3 class="panel-title">Archive Quick Links</h3>
     </div>
     <div class="panel-body">
       <ul class="list-group">
-        <li class="list-group-item">
-          <div class='img-responsive'>
-            <%= @comic.content.html_safe %>
-          </div>
-          <br>
-          <span class='inline-source'>(<%= link_to @comic.source, @comic.guid %>)</span>
-        </li>
-        <%= render 'layouts/share_this' %>
+        <% @recent_days.each do |day| %>
+          <li class="list-group-item slim-list-group-item">
+            <%= link_to day, front_page_archive_path(date: day) %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
-</div>
-<div class="col-md-2">
+
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title">Our Sponsors</h3>
@@ -42,4 +33,5 @@
       </p>
     </div>
   </div>
+
 </div>
