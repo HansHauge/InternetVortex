@@ -1,27 +1,26 @@
 # InternetVortex
 
-After deploy, we need to set up the cron jobs:
+In dev we are using whenever for cron, in production we use scheduler (heroku addon)
 
 `whenever --update-crontab InternetVortex`
 `crontab -l`
-
-Also don't forget to update the environment:
-
-`config/schedule.rb`
-`set :environment, "development"` (should be changed to production)
 
 If the cron jobs get messed up:
 
 `crontab -r`
 
-Also we need to turn on the redis server:
+If you need to turn on redis-server in dev:
 
 `redis-server`
 
-To refresh the sitemap (needs to be added to cron):
+To refresh the sitemap (this task is scheduled already and happens once a day):
 
 `rake sitemap:refresh`
 
 or:
 
-`rake sitemap:refresh:no_ping` (don't ping search engines)
+`rake sitemap:refresh:no_ping` (don't ping search engines, for development environment)
+
+Before pushing to heroku you should compile the assets:
+
+`RAILS_ENV=production bundle exec rake assets:precompile`
