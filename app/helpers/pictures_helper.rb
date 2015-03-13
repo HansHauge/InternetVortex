@@ -10,4 +10,8 @@ module PicturesHelper
   def imgur_gallery?(str)
     str.match(/imgur.com\/gallery/) || str.match(/imgur.com\/a\//)
   end
+
+  def live_meme?(str)
+    str.match(/livememe.com/)
+  end
 end
