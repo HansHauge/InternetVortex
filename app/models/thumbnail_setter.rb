@@ -12,6 +12,7 @@ class ThumbnailSetter
     return entry.image if entry.try(:image)
     return default_image unless summary_or_content
     return youtube_image if summary_or_content.match(/youtube.com/)
+    return vimeo_image if summary_or_content.match(/vimeo.com/)
 
     thumb_string = ''
 
@@ -36,6 +37,10 @@ class ThumbnailSetter
 
   def youtube_image
     '//www.youtube.com/yt/brand/media/image/YouTube-logo-full_color.png'
+  end
+
+  def vimeo_image
+    '//icons.iconarchive.com/icons/danleech/simple/512/vimeo-icon.png'
   end
 
 end
