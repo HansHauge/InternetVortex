@@ -31,6 +31,10 @@ SitemapGenerator::Sitemap.create do
     add picture_path(picture), :lastmod => picture.updated_at
   end
 
+  RedditAdviceAnimalsPicture.find_each do |picture|
+    add picture_path(picture), :lastmod => picture.updated_at
+  end
+
   add about_path
 
   Date.parse(ENV['INCEPTION_DATE_STRING']).upto(Date.current).each do |date|

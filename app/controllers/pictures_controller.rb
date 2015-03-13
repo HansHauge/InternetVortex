@@ -11,6 +11,7 @@ class PicturesController < ApplicationController
     if source = params[:source]
       @source = RedditFunnyPicture if source.eql?('reddit.com/r/funny')
       @source = MemesPicture if source.eql?('memes.com')
+      @source = RedditAdviceAnimalsPicture if source.eql?('reddit.com/r/adviceanimals')
     else
       guess_at_the_source
     end
@@ -19,6 +20,8 @@ class PicturesController < ApplicationController
   def guess_at_the_source
     if RedditFunnyPicture.where(slug: params[:id]).present?
       @source = RedditFunnyPicture
+    elsif RedditAdviceAnimalsPicture.where(slug: params[:id]).present?
+      @source = RedditAdviceAnimalsPicture
     else
       @source = MemesPicture
     end

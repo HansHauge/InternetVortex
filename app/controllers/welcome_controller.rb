@@ -43,16 +43,18 @@ class WelcomeController < ApplicationController
 
   def gather_sources(time_range)
     unsorted_listings = []
-    memebase_articles = MemebaseArticle.where(created_at: time_range)
-    failblog_articles = FailblogArticle.where(created_at: time_range)
-    r_funny_pictures = RedditFunnyPicture.where(created_at: time_range)
-    memes_pictures = MemesPicture.where(created_at: time_range)
-    jokes = Joke.where(created_at: time_range)
-    videos = BreakVideo.where(created_at: time_range)
-    xkcd_comics = XkcdComic.where(created_at: time_range)
+    memebase_articles         = MemebaseArticle.where(created_at: time_range)
+    failblog_articles         = FailblogArticle.where(created_at: time_range)
+    r_funny_pictures          = RedditFunnyPicture.where(created_at: time_range)
+    r_advice_animals_pictures = RedditAdviceAnimalsPicture.where(created_at: time_range)
+    memes_pictures            = MemesPicture.where(created_at: time_range)
+    jokes                     = Joke.where(created_at: time_range)
+    videos                    = BreakVideo.where(created_at: time_range)
+    xkcd_comics               = XkcdComic.where(created_at: time_range)
 
-    [memebase_articles, failblog_articles, r_funny_pictures, jokes, videos, xkcd_comics, memes_pictures].each do |source|
-      unsorted_listings.concat(source)
+    [memebase_articles, failblog_articles, r_funny_pictures, jokes, videos, xkcd_comics, memes_pictures, r_advice_animals_pictures].
+      each do |source|
+        unsorted_listings.concat(source)
     end
 
     unsorted_listings.sort { |x,y| x.created_at <=> y.created_at }.reverse
