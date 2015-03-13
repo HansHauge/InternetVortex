@@ -27,6 +27,12 @@ SitemapGenerator::Sitemap.create do
     add comic_path(comic), :lastmod => comic.updated_at
   end
 
+  MemesPicture.find_each do |picture|
+    add picture_path(picture), :lastmod => picture.updated_at
+  end
+
+  add about_path
+
   Date.parse(ENV['INCEPTION_DATE_STRING']).upto(Date.current).each do |date|
     add front_page_archive_path(date: date.strftime('%B-%d-%Y')), :priority => 0.7, :lastmod => date
   end

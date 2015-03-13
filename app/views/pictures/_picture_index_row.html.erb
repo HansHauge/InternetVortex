@@ -1,6 +1,6 @@
 <div class='col-md-1'>
   <div class='article-thumbnail'>
-    <%= link_to picture_path(picture) do %>
+    <%= link_to picture_path(picture, source: picture.source) do %>
       <%= image_tag picture.thumbnail, class: 'img-responsive' %>
     <% end %>
   </div>
@@ -9,7 +9,7 @@
   <% if imgur_gallery?(picture.actual_image) %>
     <%= link_to picture.title, picture.actual_image %>
   <% else %>
-    <%= link_to picture.title, picture_path(picture) %>
+    <%= link_to picture.title, picture_path(picture, source: picture.source) %>
   <% end %>
 
   <span class='inline-source'> (<%= link_to picture.source, picture.guid %>)</span>

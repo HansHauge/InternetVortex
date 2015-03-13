@@ -7,7 +7,7 @@
             <%= render 'jokes/joke_index_row', joke: listing %>
           <% elsif listing.class == BreakVideo %>
             <%= render 'videos/video_index_row', video: listing %>
-          <% elsif listing.class == RedditFunnyPicture %>
+          <% elsif [RedditFunnyPicture, MemesPicture].include?(listing.class) %>
             <%= render 'pictures/picture_index_row', picture: listing %>
           <% elsif listing.class == XkcdComic %>
             <%= render 'comics/comic_index_row', comic: listing %>

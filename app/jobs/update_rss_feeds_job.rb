@@ -4,7 +4,8 @@ class UpdateRssFeedsJob < ActiveJob::Base
                  :r_funny_pictures_feed,
                  :break_video_feed,
                  :xkcd_comic_feed,
-                 :failblog_feed
+                 :failblog_feed,
+                 :memes_pictures_feed
 
   queue_as :default
 
@@ -12,6 +13,7 @@ class UpdateRssFeedsJob < ActiveJob::Base
     update_r_jokes
     update_memebase_articles
     update_r_funny_pictures
+    update_memes_pictures
     update_break_videos
     update_xkcd_comics
     update_failblog_articles
@@ -57,6 +59,17 @@ class UpdateRssFeedsJob < ActiveJob::Base
       Feedjira::Feed.add_common_feed_entry_elements("media", :value => :url,    :as => :media)
       r_funny_pictures_feed = Feedjira::Feed.fetch_and_parse('https://www.reddit.com/r/funny/.rss')
       RedditFunnyPicture.update_from_feed(r_funny_pictures_feed.entries)
+    end
+  end
+
+  def update_memes_pictures
+    if memes_pictures_feed
+      memes_pictures_feed = Feedjira::Feed.update(memes_pictures_feed)
+      MemesPicture.update_from_feed(memes_pictures_feed.new_entries) if memes_pictures_feed.updated?
+    else
+      Feedjira::Feed.add_common_feed_entry_elements("media", :value => :url,    :as => :media)
+      memes_pictures_feed = Feedjira::Feed.fetch_and_parse('http://www.memes.com/rss.xml')
+      MemesPicture.update_from_feed(memes_pictures_feed.entries)
     end
   end
 
