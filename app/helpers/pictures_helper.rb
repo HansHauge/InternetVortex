@@ -14,4 +14,12 @@ module PicturesHelper
   def live_meme?(str)
     str.match(/livememe.com/)
   end
+
+  def img_flip?(str)
+    str.match(/imgflip.com/)
+  end
+
+  def no_direct_link?(img)
+    imgur_gallery?(img) || live_meme?(img) || img_flip?(img)
+  end
 end
