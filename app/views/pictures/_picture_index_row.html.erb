@@ -1,16 +1,21 @@
 <div class='col-md-1'>
   <div class='article-thumbnail'>
-    <%= link_to picture_path(picture, source: picture.source) do %>
-      <%= image_tag picture.thumbnail, class: 'img-responsive' %>
+    <% if no_direct_link?(picture.actual_image) %>
+      <%= link_to picture.actual_image do %>
+        <%= image_tag picture.thumbnail, class: 'img-responsive' %>
+      <% end %>
+    <% else %>
+      <%= link_to picture_path(picture, source: picture.source) do %>
+        <%= image_tag picture.thumbnail, class: 'img-responsive' %>
+      <% end %>
     <% end %>
   </div>
 </div>
 <div class='col-md-11'>
-  <% if imgur_gallery?(picture.actual_image) || live_meme?(picture.actual_image) %>
+  <% if no_direct_link?(picture.actual_image) %>
     <%= link_to picture.title, picture.actual_image %>
   <% else %>
     <%= link_to picture.title, picture_path(picture, source: picture.source) %>
   <% end %>
-
   <span class='inline-source'> (<%= link_to picture.source, picture.guid %>)</span>
 </div>
