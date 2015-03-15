@@ -40,6 +40,7 @@ gem 'whenever', :require => false
 gem 'sitemap_generator'
 gem 'unicorn-rails'
 gem 'newrelic_rpm'
+gem 'fog'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
