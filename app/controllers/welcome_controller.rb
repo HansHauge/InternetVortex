@@ -27,6 +27,10 @@ class WelcomeController < ApplicationController
     flash.now[:danger] = 'No content found...' if @listings.count == 0
   end
 
+  def sitemap
+    redirect_to 'https://s3-us-west-2.amazonaws.com/internetvortex/sitemaps/sitemap.xml.gz'
+  end
+
   private
 
   def set_recent_days
