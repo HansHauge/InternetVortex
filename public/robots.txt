@@ -3,4 +3,4 @@
 # To ban all spiders from the entire site uncomment the next two lines:
 # User-agent: *
 # Disallow: /
-Sitemap: http://www.internetvortex.com/sitemap.xml.gz
+Sitemap: https://s3-us-west-2.amazonaws.com/internetvortex/sitemaps/sitemap.xml.gz
