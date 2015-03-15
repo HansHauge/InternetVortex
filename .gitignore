@@ -29,3 +29,4 @@ pickle-email-*.html
 bower.json
 
 /public/sitemap.xml.gz
+/config/initializers/env_vars.rb
