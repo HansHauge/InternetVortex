@@ -1,7 +1,8 @@
 <%
   meta title: @article.title,
        description: @article.summary.to_description,
-       keywords: @article.categories
+       keywords: @article.categories,
+       og: { image: @article.thumbnail }
 %>
 
 <div class="col-md-8">
@@ -12,11 +13,11 @@
     <div class="panel-body">
       <ul class="list-group">
         <li class="list-group-item">
-          <div class="embed-responsive embed-responsive-16by9">
+          <div class="<%= article_is_probably_a_video?(@article) %>">
             <%= @article.summary.html_safe %>
           </div>
           <br>
-          <span class='inline-source'>(<%= link_to @article.source, @article.guid %>)</span>
+          Something broken? Try the source: <span class='inline-source'>(<%= link_to @article.source, @article.guid %>)</span>
         </li>
         <%= render 'layouts/share_this' %>
       </ul>
