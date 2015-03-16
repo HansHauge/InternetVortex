@@ -1,6 +1,7 @@
 <%
   meta title: "Comic - #{@comic.title}",
-       keywords: @comic.content.remove_html_tags.to_keywords
+       keywords: @comic.content.remove_html_tags.to_keywords,
+       og: { image: @comic.thumbnail }
 %>
 
 <div class="col-md-8">

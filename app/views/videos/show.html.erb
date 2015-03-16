@@ -1,7 +1,8 @@
 <%
   meta title: @video.title,
        description: @video.summary.to_description,
-       keywords: @video.title.to_keywords
+       keywords: @video.title.to_keywords,
+       og: { image: @video.thumbnail }
 %>
 
 <div class="col-md-8">

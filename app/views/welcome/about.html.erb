@@ -11,7 +11,7 @@
 
 <p>
   <div class='img-responsive'>
-    <%= image_tag 'http://s5.postimg.org/5emxmrmcn/time_for_that.jpg' %>
+    <%= image_tag '//s3-us-west-2.amazonaws.com/internetvortex/time_for_that.jpg' %>
   </div>
 </p>
 
@@ -22,12 +22,12 @@
 <p>
   Have you ever noticed that it's a huge pain to see stuff in the past? I mean you can click the little links<br>
   forever or try to do an advanced search, but most the time stuff gets buried if it's more than a day old. <br>
-  Well, we think THAT SUCKS!
+  Well...
 </p>
 
 <p>
   <div class='img-responsive'>
-    <%= image_tag 'http://s5.postimg.org/km2x74e7b/Farley_Foley.jpg' %>
+    <%= image_tag '//s3-us-west-2.amazonaws.com/internetvortex/downvoting_roman.jpg' %>
   </div>
 </p>
 
@@ -41,12 +41,12 @@
 <p>
   Currently we are pull in content from:
   <ul>
-    <li>Reddit</li>
-    <li>Failblog</li>
-    <li>Break</li>
-    <li>Memebase</li>
-    <li>Xkcd</li>
-    <li>Memes.com</li>
+    <li><%= link_to 'Reddit', '//www.reddit.com' %></li>
+    <li><%= link_to 'Failblog', '//failblog.cheezburger.com' %></li>
+    <li><%= link_to 'Break', '//www.break.com' %></li>
+    <li><%= link_to 'Memebase', '//memebase.cheezburger.com' %></li>
+    <li><%= link_to 'Xkcd', '//xkcd.com' %></li>
+    <li><%= link_to 'Memes', '//memes.com' %></li>
   </ul>
 
   But, we're always looking for more content providers.

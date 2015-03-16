@@ -13,6 +13,7 @@ class ThumbnailSetter
     return default_image unless summary_or_content
     return youtube_image if summary_or_content.match(/youtube.com/)
     return vimeo_image if summary_or_content.match(/vimeo.com/)
+    return liveleak_image if summary_or_content.match(/liveleak.com/)
 
     thumb_string = ''
 
@@ -29,7 +30,15 @@ class ThumbnailSetter
     end
   end
 
+  def video_thumbnails
+    [liveleak_image, vine_image, youtube_image, vimeo_image]
+  end
+
   private
+
+  def liveleak_image
+    '//lh3.googleusercontent.com/-oFD6F7P-XIo/AAAAAAAAAAI/AAAAAAAAAB0/e7KxDtrAynI/photo.jpg'
+  end
 
   def vine_image
     '//vine.co/static/images/vine_glyph_2x.png'
