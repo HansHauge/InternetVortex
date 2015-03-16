@@ -1,7 +1,8 @@
 <%
   meta title: @joke.title,
        description: @joke.content.to_description,
-       keywords: @joke.title.to_keywords
+       keywords: @joke.title.to_keywords,
+       og: { image: @joke.thumbnail }
 %>
 
 <div class="col-md-8">
