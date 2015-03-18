@@ -24,3 +24,7 @@ or:
 Before pushing to heroku you should compile the assets:
 
 `RAILS_ENV=production bundle exec rake assets:precompile`
+
+To start mysql locally:
+
+`mysql.server start`

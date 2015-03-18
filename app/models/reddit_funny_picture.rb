@@ -17,9 +17,15 @@ class RedditFunnyPicture < ActiveRecord::Base
     image_url = content.match(/">\[link\]/).pre_match.match(/"/).post_match.match(/.*(href=")/).post_match
     if from_imgur?(image_url) && !imgur_gallery?(image_url) && !image_url.is_probably_a_picture?
       image_url + '.png'
+    elsif from_gifycat?(image_url)
+      image_url.sub(/gfycat.com/, 'giant.gfycat.com') + '.gif'
     else
       image_url
     end
+  end
+
+  def from_gifycat?(string)
+    string.match(/gfycat.com/)
   end
 
   def from_imgur?(string)
