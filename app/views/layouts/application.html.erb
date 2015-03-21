@@ -14,10 +14,26 @@
     <%= csrf_meta_tags %>
     <%= metamagic %>
 
-  <script type="text/javascript">var switchTo5x=true;</script>
-  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-  <script type="text/javascript">stLight.options({publisher: "33c7f351-79e9-477e-bcf3-ce71da003803", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+    <!-- Sharethis -->
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher: "33c7f351-79e9-477e-bcf3-ce71da003803", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 
+    <!-- Pagefair -->
+    <script type="text/javascript">
+      (function() {
+          function async_load(script_url){
+              var protocol = ('https:' == document.location.protocol ? 'https://' : 'http://');
+              var s = document.createElement('script'); s.src = protocol + script_url;
+              var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+          }
+          bm_website_code = '6CF72B656F3F4CE2';
+          jQuery(document).ready(function(){async_load('asset.pagefair.com/measure.min.js')});
+          jQuery(document).ready(function(){async_load('asset.pagefair.net/ads.min.js')});
+      })();
+    </script>
+
+    <!-- Google Analytics -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <% if Rails.env.production? %>
       <script>
