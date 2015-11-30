@@ -13,6 +13,10 @@ If you need to turn on redis-server in dev:
 
 `redis-server`
 
+To update the feeds with rake:
+
+`rake update_rss_feeds:update_all`
+
 To refresh the sitemap (this task is scheduled already and happens once a day):
 
 `rake sitemap:refresh`
